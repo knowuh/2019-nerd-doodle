@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>Canvas Experiment</title>
+    <style>
+      :root {
+        --border-size: 10px;
+      }
+      body {
+        background-color: hsl(0,0%,50%);
+        margin: 1px;
+        font-family: Helvetica,  Arial, sans-serif;
+        color: white;
+      }
+      #container {
+        background-color: white;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="container"></canvas>
+  </body>
+  <script>
+    let width  = 10;
+    let height = 10;
+    let numColumns = 57;
+    let gridSize = 0;
+    let t = 0;
+    const setGridsize = (newNumColumns) => {
+      if (newNumColumns) {
+        numColumns = newNumColumns;
+      }
+      gridSize = width / numColumns;
+    }
+    const canvas = document.querySelector('canvas');
+    const context = canvas.getContext('2d');
+    const handleResize = () => {
+      const {width: w, height: h}  = canvas.getBoundingClientRect();
+      canvas.width = width = w;
+      canvas.height = height = h;
+      setGridsize();
+    }
+    window.addEventListener("resize", handleResize);
+
+    const randChar = () => {
+      const range = "AZ";
+      const start = range.charCodeAt(0);
+      const end = range.charCodeAt(1);
+      const width = end - start;
+      const index = Math.round(Math.random() * width);
+      return String.fromCharCode(start + index);
+    }
+    const draw = (x, y) => {
+      // const char = randChar();
+      const char = "x";
+      const lightness = y / numColumns * 100;
+      const saturation = x / numColumns * 100;
+      context.save();
+      context.translate(x * gridSize - gridSize/2, y * gridSize - gridSize / 2);
+      context.fillRect(-gridSize/2, -gridSize/2, gridSize-1, gridSize-1);
+
+      context.fillStyle=`hsl(10, ${saturation}%, ${50}%)`;
+      context.fillStyle='white';
+      context.textAlign='center';
+      context.textBaseline='middle';
+      context.font = `${gridSize}px sans-serif`;
+      context.rotate(x * 0.2 + t);
+      context.fillText(char, 0, 0);
+      context.restore();
+    }
+    const clear = (x, y) => {
+      context.clearRect(0,0,width,height);
+      // context.save();
+      // context.fillStyle="hsla(0,10%,90%,0.1)";
+      // context.fillStyle="black";
+      // context.fillRect(0,0,width, height);
+      // context.restore();
+    }
+    const repaint = () => {
+      clear();
+      t = t + 0.1;
+      for (let x = 0; x < numColumns; x++) {
+        for (let y = 0; y < numColumns; y++) {
+          draw(x,y);
+        }
+      }
+      requestAnimationFrame(repaint);
+    }
+    context.fillStyle = 'black';
+    handleResize();
+    requestAnimationFrame(repaint);
+    // setInterval(repaint, 100);
+  </script>
+</html>
