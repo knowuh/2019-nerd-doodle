@@ -6,14 +6,11 @@
         --border-size: 10px;
       }
       body {
-        background-color: hsl(0,0%,50%);
-        margin: 1px;
+        background-color: black;
         font-family: Helvetica,  Arial, sans-serif;
         color: white;
       }
       #container {
-        background-color: white;
-        position: absolute;
         width: 100vw;
         height: 100vh;
       }
@@ -23,26 +20,40 @@
     <canvas id="container"></canvas>
   </body>
   <script>
-    let width  = 10;
-    let height = 10;
-    let numColumns = 57;
+    let numColumns = 10;
     let gridSize = 0;
     let t = 0;
+    const canvas = document.querySelector('canvas');
+    const context = canvas.getContext('2d');
+
     const setGridsize = (newNumColumns) => {
       if (newNumColumns) {
         numColumns = newNumColumns;
       }
-      gridSize = width / numColumns;
+      gridSize = canvas.width / numColumns;
     }
-    const canvas = document.querySelector('canvas');
-    const context = canvas.getContext('2d');
+
     const handleResize = () => {
       const {width: w, height: h}  = canvas.getBoundingClientRect();
-      canvas.width = width = w;
-      canvas.height = height = h;
+      canvas.width = w;
+      canvas.height = h;
       setGridsize();
     }
     window.addEventListener("resize", handleResize);
+
+    const charSet = () => {
+      const range = "AZ";
+      const start = range.charCodeAt(0);
+      const end = range.charCodeAt(1);
+      const width = end - start;
+    }
+    const getChar = (x, y) => {
+      const index = x + y;
+      const string = "x O X o o ❤ ";
+      const len = string.length;
+      return "X"
+      return string.charAt(index % len) || "";
+    }
 
     const randChar = () => {
       const range = "AZ";
@@ -52,14 +63,26 @@
       const index = Math.round(Math.random() * width);
       return String.fromCharCode(start + index);
     }
+    const adjustMargins = () => {
+      const calculatedSizeX = gridSize * (numColumns+1);
+      const measuredSizeX = canvas.width;
+      const extraSpaceX = measuredSizeX - calculatedSizeX;
+
+      const calculatedSizeY = gridSize * (numColumns+1);
+      const measuredSizeY = canvas.clientHeight;
+      const extraSpaceY = measuredSizeY - calculatedSizeY;
+
+      context.translate(-extraSpaceX, extraSpaceY);
+    }
+
     const draw = (x, y) => {
-      // const char = randChar();
-      const char = "x";
+      const char = getChar(x, y);
       const lightness = y / numColumns * 100;
       const saturation = x / numColumns * 100;
       context.save();
+      adjustMargins();
       context.translate(x * gridSize - gridSize/2, y * gridSize - gridSize / 2);
-      context.fillRect(-gridSize/2, -gridSize/2, gridSize-1, gridSize-1);
+      context.fillRect(-gridSize/2, -gridSize/2, gridSize, gridSize);
 
       context.fillStyle=`hsl(10, ${saturation}%, ${50}%)`;
       context.fillStyle='white';
@@ -70,17 +93,15 @@
       context.fillText(char, 0, 0);
       context.restore();
     }
+
     const clear = (x, y) => {
-      context.clearRect(0,0,width,height);
-      // context.save();
-      // context.fillStyle="hsla(0,10%,90%,0.1)";
-      // context.fillStyle="black";
-      // context.fillRect(0,0,width, height);
-      // context.restore();
+      context.fillStyle="hsla(0, 10%, 40%, 0.1)";
+      context.fillRect(0,0, canvas.width, canvas.height);
     }
+    
     const repaint = () => {
       clear();
-      t = t + 0.1;
+      t = t + 0.05;
       for (let x = 0; x < numColumns; x++) {
         for (let y = 0; y < numColumns; y++) {
           draw(x,y);
