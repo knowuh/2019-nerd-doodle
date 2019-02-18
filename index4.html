@@ -1,0 +1,167 @@
+<html>
+
+<head>
+  <title>Canvas Experiment</title>
+  <style>
+    :root {
+      --border-size: 10px;
+    }
+
+    body {
+      background-color: white;
+      font-family: Helvetica, Arial, sans-serif;
+      color: white;
+    }
+
+    #container {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    canvas {
+      background: black;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="container"></canvas>
+</body>
+<script>
+  let numColumns = 10;
+  let gridSize = 0;
+  let t = 0;
+  let lines = [];
+  const canvas = document.querySelector('canvas');
+  const context = canvas.getContext('2d');
+
+  const setGridsize = (newNumColumns) => {
+    if (newNumColumns) {
+      numColumns = newNumColumns;
+    }
+    if (canvas.width > canvas.height) {
+      gridSize = canvas.height / numColumns;
+    } else {
+      gridSize = canvas.width / numColumns;
+    }
+  }
+
+  const handleResize = () => {
+    const {
+      width: w,
+      height: h
+    } = canvas.getBoundingClientRect();
+    canvas.width = w;
+    canvas.height = h;
+    setGridsize();
+  }
+  window.addEventListener("resize", handleResize);
+
+
+  const adjustMargins = () => {
+    const size = gridSize * numColumns;
+    const extraSpaceX = canvas.width - size;
+    const extraSpaceY = canvas.height - size;
+    context.translate(extraSpaceX / 2, extraSpaceY / 2);
+  }
+
+  const linesIntersect = (a, b, c, d, p, q, r, s) => {
+    var gamma, lambda;
+    const det = (c - a) * (s - q) - (r - p) * (d - b);
+    if (det === 0) {
+      return false;
+    }
+    lambda = ((s - q) * (r - a) + (p - r) * (s - b)) / det;
+    gamma = ((b - d) * (r - a) + (c - a) * (s - b)) / det;
+    return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+  }
+
+  const intersects = (line) => {
+    let hitCount = 0;
+    lines.forEach(l => {
+      if (linesIntersect(
+          line.x1, line.y1, line.x2, line.y2,
+          l.x1, l.y1, l.x2, l.y2)) {
+        hitCount = hitCount + 1;
+      }
+    })
+    return hitCount > 0;
+  }
+
+  let longestLine = 0;
+  const lineLen = (line) => {
+    // const length = Math.sqrt(
+    //   Math.pow(line.x2 - line.x1, 2) +
+    //   Math.pow(line.y2 - line.y2, 2)
+    // );
+    const length = Math.abs(line.x2 - line.x1);
+    return length;
+  }
+  const longer = (line) => {
+    const length = lineLen(line)
+    const longer = length > longestLine;
+    if (longer) {
+      longestLine = length;
+      return true;
+    }
+    return false;
+  };
+
+  const randWidth = () => Math.floor(Math.random() * canvas.width);
+  const randHeight = () => Math.floor(Math.random() * canvas.height);
+
+  const makeLines = () => {
+    lines = [];
+    longestLine = 0;
+    let newLine;
+    const maxToTry = 90000;
+    const acceptLine = (line) => {
+      // return !longer(line)// && !intersects(line);
+      return !intersects(line);
+    }
+    for (let i = 0; i < maxToTry; i++) {
+      newline = {
+        x1: randWidth(),
+        y1: randHeight(),
+        x2: randWidth(),
+        y2: randHeight()
+      };
+      if (acceptLine(newline)) {
+        lines.push(newline);
+      }
+    }
+  }
+  const draw = () => {
+    makeLines();
+    context.strokeStyle = 'white';
+    lines.forEach((line) => {
+      context.beginPath();
+      context.moveTo(line.x1, line.y1);
+      context.lineTo(line.x2, line.y2);
+      context.stroke();
+    });
+  }
+
+  const clear = (x, y) => {
+    context.fillStyle = "hsla(0, 10%, 40%, 1)";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  lastT = 0;
+  const repaint = (interval) => {
+    t = interval - lastT;
+    if (t > 200) {
+      clear();
+      lastT = interval;
+      draw();
+    }
+    requestAnimationFrame(repaint);
+  }
+  context.fillStyle = 'black';
+  handleResize();
+  requestAnimationFrame(repaint);
+  // setInterval(repaint, 100);
+</script>
+
+</html>

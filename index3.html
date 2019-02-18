@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <title>Canvas Experiment</title>
+    <style>
+      :root {
+        --border-size: 10px;
+      }
+      body {
+        background-color: white;
+        font-family: Helvetica,  Arial, sans-serif;
+        color: white;
+      }
+      #container {
+        width: 100vw;
+        height: 100vh;
+      }
+      canvas{
+        background: black;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="container"></canvas>
+  </body>
+  <script>
+    let numColumns = 10;
+    let gridSize = 0;
+    let t = 0;
+    const canvas = document.querySelector('canvas');
+    const context = canvas.getContext('2d');
+
+    const setGridsize = (newNumColumns) => {
+      if (newNumColumns) {
+        numColumns = newNumColumns;
+      }
+      if (canvas.width > canvas.height) {
+        gridSize = canvas.height / numColumns;
+      }
+      else {
+        gridSize = canvas.width / numColumns;
+      }
+    }
+
+    const handleResize = () => {
+      const {width: w, height: h}  = canvas.getBoundingClientRect();
+      canvas.width = w;
+      canvas.height = h;
+      setGridsize();
+    }
+    window.addEventListener("resize", handleResize);
+
+    const charSet = () => {
+      const range = "AZ";
+      const start = range.charCodeAt(0);
+      const end = range.charCodeAt(1);
+      const width = end - start;
+    }
+    const getChar = (x, y) => {
+      const index = x + y;
+      const string = "x O X o o ❤ ";
+      const len = string.length;
+      return "X"
+      return string.charAt(index % len) || "";
+    }
+
+    const randChar = () => {
+      const range = "AZ";
+      const start = range.charCodeAt(0);
+      const end = range.charCodeAt(1);
+      const width = end - start;
+      const index = Math.round(Math.random() * width);
+      return String.fromCharCode(start + index);
+    }
+
+    const adjustMargins = () => {
+      const size = gridSize * numColumns;
+      const extraSpaceX = canvas.width - size;
+      const extraSpaceY = canvas.height - size;
+      context.translate(extraSpaceX/2, extraSpaceY/2);
+    }
+
+    const spiro = (x, y) => {
+      let numSteps = Math.ceil(Math.random() * x) + 1;
+
+      let symetry = Math.ceil(Math.random() * y)
+      numSteps = x + 1;
+      symetry = y + 1;
+      const rotSize = Math.PI * 2 / (numSteps * symetry);
+      const points = [];
+      // const rotSize = 0.3;
+      for (let i = 0; i < numSteps; i++) {
+        points.push(Math.random() * gridSize/2);
+      }
+      context.beginPath();
+      context.moveTo(0, Math.random() * gridSize/2);
+      for (let j = 0; j < symetry; j++) {
+          for (let i = 0; i < numSteps; i++) {
+            context.rotate(rotSize);
+            context.lineTo(0, points[i]);
+          }
+      }
+      context.closePath();
+      context.fill();
+      context.stroke();
+    }
+
+    const draw = (x, y) => {
+      const char = getChar(x, y);
+      const hue = y / numColumns * 40;
+      const saturation = x / numColumns * 100;
+      const bigrect = numColumns * gridSize;
+      context.save();
+      adjustMargins();
+      context.strokeStyle="white";
+      context.strokeRect(0,0, bigrect, bigrect);
+      context.translate(x * gridSize + gridSize/2, y * gridSize + gridSize / 2);
+      context.fillRect(-gridSize/2, -gridSize/2, gridSize - 1, gridSize - 1 );
+
+      context.fillStyle=`hsla(${hue}, ${saturation}%, ${50}%, 0.9)`;
+      context.strokeStyle="white";
+      spiro(x,y);
+      // context.fillStyle='white';
+      // context.textAlign='center';
+      // context.textBaseline='middle';
+      // context.font = `${gridSize}px sans-serif`;
+      // context.rotate(x * 0.02 * Math.random());
+      // context.fillText(char, 0, 0);
+      context.restore();
+    }
+
+    const clear = (x, y) => {
+      context.fillStyle="hsla(0, 10%, 40%, 0.1)";
+      context.fillRect(0,0, canvas.width, canvas.height);
+    }
+
+    lastT = 0;
+    const repaint = (interval) => {
+
+      console.log(interval);
+      t = interval - lastT;
+      if (t > 300) {
+        clear();
+        lastT = interval;
+        for (let x = 0; x < numColumns; x++) {
+          for (let y = 0; y < numColumns; y++) {
+            draw(x,y);
+          }
+        }
+      }
+      requestAnimationFrame(repaint);
+    }
+    context.fillStyle = 'black';
+    handleResize();
+    requestAnimationFrame(repaint);
+    // setInterval(repaint, 100);
+  </script>
+</html>
