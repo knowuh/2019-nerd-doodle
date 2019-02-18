@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Vera Molnar 01</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        font-family: Helvetica,  Arial, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    Vera Molnar 01
+    <canvas width="500" height="500"></canvas>
+  </body>
+  <script>
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+    var drawSquare = function(xLoc, yLoc, size) {
+      context.beginPath();
+      context.moveTo(xLoc       ,  yLoc       );
+      context.lineTo(xLoc + size,  yLoc       );
+      context.lineTo(xLoc + size,  yLoc + size);
+      context.lineTo(xLoc       ,  yLoc + size);
+      context.closePath();
+      context.stroke();
+    }
+    var squareSize = 100;
+    drawSquare(10, 10, squareSize);
+    drawSquare(120, 10, squareSize);
+    drawSquare(230, 10, squareSize);
+    drawSquare(340, 10, squareSize);
+  </script>
+</html>
