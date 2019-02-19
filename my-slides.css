@@ -1,0 +1,10 @@
+.left {
+  text-align: left;
+}
+.artist {
+  display: flex;
+  flex-direction: column;
+}
+.artist img {
+  height: 90vh;
+}

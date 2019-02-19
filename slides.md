@@ -1,57 +1,253 @@
 
+# Doodling with the Canvas API
+@knowuh
+knowuh@gmail.com http://paessel.com/
 
-# Why should I do this?
+<slide>
+
+# What is this talk?
+  * A light introduction to the practice of creative coding.
+  * The cliff notes for a class "Sketching with Code"
+  * This talk is for newbies.
+  * This talk is for cranky old-timers.
+
+
+<vertical>
+## What is this talk?
+* I will give you cheat codes!
+* We find out about [canvas 2d api](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+* We will learn some art history.
+* We use plain-old Javascript.
+
+<vertical>
+## Why should I?
   * To try programming.
   * To engage in visual explorations.
-  * Its good for you (*)
-“I like to think of play not as an activity, but as an attitude, a way of engaging with the world" – @MRES
+  * It's good for your brain*.
 
-# Who is talking
+</br></br>
+*I am not a doctor*
+
+
+<vertical>
+## Why Canvas
+  * Javascript is everywhere.
+  * More immediate than SVG or WebGL.
+  * No Frameworks, no building, single page.
+
+
+<slide>
+"I like to think of play not as an activity, but as an attitude, a way of engaging with the world"
+<br/>–  *Mitchel Resnick*  (@mres)
+
+<slide>
+
+## Who am I?
   * I studied visual art and design.
   * I have been programming for 35+ years.
-  * I love inspiring people to make and share for making sake.
+  * I want you to make things.
+
+<slide>
 
 # Visual hacks
-  * Sketch a lot.
-    * Looking at things.
-    * Notice what interests you.
-    * Play with pencil and paper.
-    * MANY sketches.
-  * Constraints.
-    These are an important creative fuel.
-    By holding some things constant, we focus on the possibilities of the remaining parameters.
-    Music, poetry, all have various established formal constraints.
-    * Examples:
-      * [Haiku](https://en.wikipedia.org/wiki/Haiku)
-      * [Dogme films](https://en.m.wikipedia.org/wiki/Dogme_95)
-      * Only sketch in 2" squares.
-      * Only use 250,000px
-      * Only use black and white.
-  * Learn about gestlat principles and human perception.
-    * The Gestalt Principles are a set of laws arising from 1920s’ psychology, describing how humans typically see objects by grouping similar elements, recognizing patterns and simplifying complex images. Designers use these to engage users via powerful -yet natural- “tricks” of perspective and best practice design standards.
-    * Gestalt principles as design concepts grounded in the mechanics of human perception.
-    * Art, design, and [Optical illusions](https://en.wikipedia.org/wiki/Optical_illusion) typically exploit these same mechanism.
-    * Some specific examples of gestalt princples are:
-      * Closure: We automatically fill in gaps
-      * Common Fate: We group elements that move the same direction.
-      * Common Region: We group elements in the same perceived enclosure.
-      * Prägnanz: We percieve simpler objects first, or in favor of complex ones.
-      * Proximity: We group closer-together elements.
-      * Continuation: We follow lines.
-      * Similarity: We look for differences and commonality of shape.
-    * Recommended book: ["Primer of Visual Literacy"](https://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290) by Donis A. Dondis.
-  * Quick visual art hacks that *always* work:
-    * Currate: Take 1000 photographs, and choose one.
-    * Crop: Your initial framing will be wrong.
-    * Less is more: pay attention whitespace and visual complexity.
-    * Legibility: mind contrast.
-    * Make it *big*, make it *red* , or make *lots of them*.
-    * Cheat. This is art. Its all fake. Break. The. Rules.
-    * Steal. Get inspired by others, but GIVE CREDIT.
+  * Doodle and sketch.
+  * Use arbitrary constraints.
+  * Learn about gestalt principles.
+  * Some quick tips.
 
+<vertical>
+## Sketch for ideas
+* Use a pencil.
+* Its not precious.
+* Notice what interests you.
+* Ask questions.
+
+<br/><br/>
+
+<span class="fragment">**Sketch**.</span>
+<span class="fragment">**All**.</span>
+<span class="fragment">**The**.</span>
+<span class="fragment">**Time**.</span>
+
+
+<vertical>
+
+## Constraints
+By holding some things constant, we focus on the possibilities of the remaining parameters.
+* Music
+* [Haiku](https://en.wikipedia.org/wiki/Haiku)
+* [Dogme films](https://en.m.wikipedia.org/wiki/Dogme_95)
+* Only paint in 2" squares.
+* Only use 400 pixels.
+* Only use black and white.
+
+<vertical>
+## Gestlat principles of design
+  <div class="left">
+    The Gestalt Principles are a set of laws arising from 1920s' psychology, describing how humans typically see objects by grouping similar elements, recognizing patterns and simplifying complex images. Designers use these to engage users via powerful -yet natural- "tricks" of perspective and best practice design standards.
+  <div class="left">
+<vertical>
+## Gestlat principles of design
+* Gestalt principles are real. They are grounded in the *mechanics* of human perception.
+* Art, design, and [Optical illusions](https://en.wikipedia.org/wiki/Optical_illusion) exploit artifacts of human perception.
+
+<vertical>
+## Some gestalt princples are..
+
+* Closure: Our brain fills in gaps.
+* Common Fate: We group elements that move the same direction.
+* Common Region: We group elements in the same perceived enclosure.
+* Proximity: We group closer-together elements.
+* Continuation: We follow lines.
+* Similarity: We look for differences and commonality of shape.
+
+<vertical>
+## Book about gestalt theory:
+* ["Primer of Visual Literacy"](https://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290) by Donis A. Dondis.
+
+<slide>
+# Cheat codes:
+  * Currate.
+  * Crop.
+  * Contrast.
+  * Accidents.
+  * Fake it.
+  * Steal and  **give credit**.
+  <br/><br/>
+<div>
+  <span class="fragment">Make it **Big**.</span>
+  <span class="fragment">Make it **red**.</span>
+  <span class="fragment">Or make **many** of them.</span>
+</div>
+
+Note:
+* Take 1000 photographs, and choose one.
+* Crop: Your initial framing will be wrong. Direct attention. Cut out noise.
+* Constrast: What is the focus, what will stand out?
+* Accidents: investigate, celebrate, incorporate your accidents.
+* Fake it: Its art. Its all fake. Their is no purity, its all for show.
+
+<slide>
 # Programming hacks
+* Get *something* on the screen ASAP.
+* Reduce friction.
+* Wishful programming.
+* Generalize.
+* Clean up.
+* HSLA color.
+* Google MDN.
+
+<vertical>
+## Wishful programming
+```
+  var drawSquare = function (x, y, size) {
+    // Not sure what to do yet!
+    console.log('drawing a square:', x, y, size)
+  }
+
+  var drawTheSquares = function () {
+    drawSquare(10, 10, 100)
+    drawSquare(120, 10, 100)
+    drawSquare(240, 10, 100)
+  }
+
+  drawTheSquares()
+```
+
+<vertical>
+## Generalize
+```
+  var squareSize = 100
+  var borderSize = 10
+
+  var drawSquare = function (column, row) {
+    var x = column * (squareSize + borderSize);
+    var y = row * (squareSize + borderSize);
+    drawSquareAtXY(x, y);
+  }
+
+  var drawTheSquares = function () {
+    drawSquare(0, 0)
+    drawSquare(1, 1)
+  }
+
+```
+
+
+<slide>
 # Finding Inspiration
-# Example: Vera Molnar
+From the earliest computer artists.
+
+<vertical>
+<div class="artist">
+  <div> Michael Noll – Engineer<div>
+  <img src="images/noll/noll-1.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div> Michael Noll – Engineer<div>
+  <img src="images/noll/noll-2.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div> Michael Noll – Engineer<div>
+  <img src="images/noll/noll-3.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Frieder Nake – Mathemetician<div>
+  <img src="images/nake/nake-1.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Frieder Nake – Mathemetician<div>
+  <img src="images/nake/nake-2.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Frieder Nake – Mathemetician<div>
+  <img src="images/nake/nake-3.png"/>
+</div>
+
+
+<vertical>
+<div class="artist">
+  <div>Georg Nees – Mathematics & Philosophy<div>
+  <img src="images/nees/nees.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Vera Molnar – Artist & Designer<div>
+  <img src="images/mulnar/vera-mulnar-1.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Vera Molnar – Artist & Designer<div>
+  <img src="images/mulnar/vera-mulnar-2.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Vera Molnar – Artist & Designer<div>
+  <img src="images/mulnar/vera-mulnar-3.png"/>
+</div>
+
+
+<slide>
+<div class="artist">
+  <div>Vera Molnar – Artist & Designer<div>
+  <img src="images/mulnar/vera-mulnar-1.png"/>
+</div>
+
+
+<slide>
 ## VM1: Draw a some squares on a canvas
 ```
 <html>
@@ -86,6 +282,7 @@
   </script>
 </html>
 ```
+<slide>
 ## VM2: Clean it up, do some magic.
 ## VM3: Multiple Squares & placement
 ## VM4: How many / how large?
