@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Vera Molnar 01</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        font-family: Helvetica,  Arial, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    Vera Molnar 01
+    <canvas width="500" height="500"></canvas>
+  </body>
+  <script>
+
+    // Find a place we can draw:
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+
+    // Variables:
+    var canvSize = 500;
+    var squareSize = 100;
+    var padding = 10;
+
+
+    // Draw a square at Grid Location:
+    var drawSquare = function(gridX, gridY) {
+      var startX = gridX * (squareSize + padding) + padding;
+      var startY = gridY * (squareSize + padding) + padding;
+
+      context.beginPath();
+
+      context.moveTo(startX,               startY);
+      context.lineTo(startX + squareSize,  startY);
+      context.lineTo(startX + squareSize,  startY + squareSize) ;
+      context.lineTo(startX,               startY + squareSize) ;
+
+      context.closePath();
+      context.stroke();
+    }
+
+    // draw hella squares:
+    var x, y;
+    var numWide = 4;
+    var numTall = 4;
+    for(x=0; x < numWide; x++) {
+      for(y=0; y < numTall; y++) {
+        drawSquare(x,y);
+      }
+    }
+
+  </script>
+</html>
