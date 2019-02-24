@@ -262,8 +262,11 @@ From the earliest computer artists.
     <canvas width="500" height="500"></canvas>
   </body>
   <script>
+    // Get some place to draw:
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
+
+    // draw one square:
     context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(10,10);
@@ -272,22 +275,16 @@ From the earliest computer artists.
     context.lineTo(10,100);
     context.lineTo(10,10);
     context.stroke();
-    context.beginPath();
-    context.moveTo(110,10);
-    context.lineTo(200,10);
-    context.lineTo(200,100);
-    context.lineTo(110,100);
-    context.lineTo(110,10);
-    context.stroke();
+
   </script>
 </html>
 ```
 <slide>
-## VM2: Clean it up, do some magic.
+## VM2: Clean it, make it reusable.
 ## VM3: Multiple Squares & placement
 ## VM4: How many / how large?
 ## VM5: Nested structures [-]
-## VM6: Imperfections and randomness
+## VM6: Imperfections and randomnesss
 ## VM7: Parameters and Variations
 ## VM8: Transformational Yoga
 ## VM9: Make it yours
