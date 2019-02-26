@@ -283,13 +283,14 @@ From the earliest computer artists.
 ## VM2: Clean it, make it reusable.
 ## VM3: Multiple Squares & placement
 ## VM4: How many / how large?
-## VM5: Nested structures [-]
+## VM5: Iteration, fitting.
+## VM5: Iteration, fitting.
 ## VM6: Imperfections and randomnesss
 ## VM7: Parameters and Variations
 ## VM8: Transformational Yoga
 ## VM9: Make it yours
 # Animation
-# Collecting code for resuse
+# Collecting code for reuse
 # [Other examples time permitting]
 # Artists and Educators
 # Technical Resources
