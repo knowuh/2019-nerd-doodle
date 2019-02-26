@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Vera Molnar 01</title>
+    <title>Vera Molnar 05</title>
     <style>
       body {
         width: 100vw;
@@ -12,15 +12,20 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
       }
       canvas {
-        border: 1px solid black;
+        margin: 0px;
+        padding: 0px;
+        width: 90vw;
+        height: 90vh;
       }
     </style>
   </head>
   <body>
-    Vera Molnar 01
-    <canvas width="500" height="500"></canvas>
+    <canvas></canvas>
   </body>
   <script>
 
@@ -33,10 +38,7 @@
     var marginScale = 0.9;
     var numColumns = 3;
 
-    var setgridSize = function(newNumColumns){
-      if (newNumColumns) {
-        numColumns = newNumColumns;
-      }
+    var setgridSize = function(){
       if (canvas.width > canvas.height) {
         gridSize = canvas.height / numColumns;
       }
@@ -50,19 +52,20 @@
       var extraSpaceX = canvas.width - size;
       var extraSpaceY = canvas.height - size;
       context.translate(extraSpaceX/2, extraSpaceY/2);
+      setgridSize()
     }
 
-    var handleResize = function () {
+    var resize = function () {
       var {width: w, height: h}  = canvas.getBoundingClientRect();
       canvas.width = w;
       canvas.height = h;
+      setgridSize();
       draw();
     }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", resize);
 
-    var drawSquare = function(x, y) {
-      context.save();
+    var drawSquare = function() {
       var halfGrid = gridSize / 2;
       var startX = - halfGrid;
       var startY = - halfGrid;
@@ -78,7 +81,6 @@
 
       context.closePath();
       context.stroke();
-      context.restore()
     }
 
     // Align drawing to our grid
@@ -87,7 +89,7 @@
       context.save();
       context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
       context.scale(marginScale, marginScale);
-      drawingFunction(gridX, gridY);
+      drawingFunction();
       context.restore();
     }
 
@@ -105,7 +107,6 @@
       context.restore();
     }
 
-    draw();
-
+    resize();
   </script>
 </html>

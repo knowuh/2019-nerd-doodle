@@ -280,11 +280,11 @@ From the earliest computer artists.
 </html>
 ```
 <slide>
-## VM2: Clean it, make it reusable.
-## VM3: Multiple Squares & placement
-## VM4: How many / how large?
-## VM5: Iteration, fitting.
-## VM5: Iteration, fitting.
+## VM-02: Clean it, make it reusable.
+## VM-03: Multiple Squares & placement
+## VM-04: How many / how large?
+## VM-05: Iteration and fitting.
+## VM-06: Futher Iteration.
 ## VM6: Imperfections and randomnesss
 ## VM7: Parameters and Variations
 ## VM8: Transformational Yoga
