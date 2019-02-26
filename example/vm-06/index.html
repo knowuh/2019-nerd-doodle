@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <title>Vera Molnar 05</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        font-family: Helvetica,  Arial, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      canvas {
+        margin: 0px;
+        padding: 0px;
+        width: 90vw;
+        height: 90vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+  </body>
+  <script>
+
+    // Find a place we can draw:
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+
+    // Variables:
+    var gridSize = 1;
+    var marginScale = 0.9;
+    var numColumns = 13;
+
+    function setgridSize () {
+      if (canvas.width > canvas.height) {
+        gridSize = canvas.height / numColumns;
+      }
+      else {
+        gridSize = canvas.width / numColumns;
+      }
+    }
+
+    function adjustMargins () {
+      var size = gridSize * numColumns;
+      var extraSpaceX = canvas.width - size;
+      var extraSpaceY = canvas.height - size;
+      context.translate(extraSpaceX/2, extraSpaceY/2);
+      setgridSize()
+    }
+
+    function resize () {
+      var {width: w, height: h}  = canvas.getBoundingClientRect();
+      canvas.width = w;
+      canvas.height = h;
+      setgridSize();
+      draw();
+    }
+    window.addEventListener("resize", resize);
+
+    function drawSquare () {
+      var halfGrid = gridSize / 2;
+      // Expect the origin, 0,0 to be in the center.
+      var startX = - halfGrid;
+      var startY = - halfGrid;
+      var endX = halfGrid;
+      var endY = halfGrid;
+
+      context.beginPath();
+
+      context.moveTo(startX, startY);
+      context.lineTo(endX,   startY);
+      context.lineTo(endX,   endY) ;
+      context.lineTo(startX, endY) ;
+
+      context.closePath();
+      context.stroke();
+    }
+
+    function veraSquare() {
+      var i = 0;
+      var numSquares = 4;
+      var stepSize = 1 / numSquares;
+      // sale from  0 to 1 in numSquares steps
+      for (i = 0; i <= 1; i += stepSize) {
+        context.save();
+        context.scale(i, i);
+        drawSquare();
+        context.restore();
+      }
+
+    }
+
+    // Align drawing to our grid
+    function drawInGrid (gridX, gridY, drawingFunction) {
+      var halfGrid = gridSize / 2;
+      context.save();
+      context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
+      context.scale(marginScale, marginScale);
+      drawingFunction();
+      context.restore();
+    }
+
+    // draw hella squares:
+    function draw () {
+      setgridSize();
+      adjustMargins();
+      context.save();
+      var x, y;
+      for(x=0; x < numColumns; x++) {
+        for(y=0; y < numColumns; y++) {
+          drawInGrid(x, y, veraSquare);
+        }
+      }
+      context.restore();
+    }
+
+    resize();
+  </script>
+</html>
