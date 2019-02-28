@@ -94,7 +94,7 @@
         points.push(Math.random() * gridSize/2);
       }
       context.beginPath();
-      context.moveTo(0, Math.random() * gridSize/2);
+      context.moveTo(0, points[0]);
       for (let j = 0; j < symetry; j++) {
           for (let i = 0; i < numSteps; i++) {
             context.rotate(rotSize);
