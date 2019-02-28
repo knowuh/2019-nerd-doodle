@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <title>Vera Molnar 05</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        font-family: Helvetica,  Arial, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      canvas {
+        margin: 0px;
+        padding: 0px;
+        width: 90vw;
+        height: 90vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+  </body>
+  <script>
+
+    // Find a place we can draw:
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+
+    // Variables:
+    var gridSize = 1;
+    var marginScale = 0.6;
+    var numColumns = 4;
+
+    function setgridSize () {
+      if (canvas.width > canvas.height) {
+        gridSize = canvas.height / numColumns;
+      }
+      else {
+        gridSize = canvas.width / numColumns;
+      }
+    }
+
+    function adjustMargins () {
+      var size = gridSize * numColumns;
+      var extraSpaceX = canvas.width - size;
+      var extraSpaceY = canvas.height - size;
+      context.translate(extraSpaceX/2, extraSpaceY/2);
+      setgridSize()
+    }
+
+    function resize () {
+      var {width: w, height: h}  = canvas.getBoundingClientRect();
+      canvas.width = w;
+      canvas.height = h;
+      setgridSize();
+      draw();
+    }
+    window.addEventListener("resize", resize);
+
+    function getColor(hue,  sat, light, alpha) {
+      var h = hue * 365;
+      var s = sat * 100;
+      var l = light * 100;
+      return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
+    }
+
+    function drawSquare (gridX, gridY) {
+      var halfGrid = gridSize / 2;
+      // Expect the origin, 0,0 to be in the center.
+      var startX = - halfGrid;
+      var startY = - halfGrid;
+      var randAmout = halfGrid * gridX / 10;
+      var r = () => (randAmout/2) - Math.random() * randAmout
+      var endX = halfGrid;
+      var endY = halfGrid;
+      var light = numColumns / (gridY + 1);
+
+      context.beginPath();
+
+      context.moveTo(startX + r(), startY +r());
+      context.lineTo(endX + r(),   startY +r());
+      context.lineTo(endX + r(),   endY + r()) ;
+      context.lineTo(startX +r(), endY +r()) ;
+
+      context.closePath();
+
+      context.stroke();
+    }
+
+    function veraSquare(gridX, gridY) {
+      var i = 1;
+      var numSquares = 3;
+      var stepSize = 1 / (numSquares * (gridY + 1))
+      // sale from  0 to 1 in numSquares steps
+      for (i = 1; i >= 0; i -= stepSize) {
+        context.save();
+        context.scale(i, i);
+        drawSquare(gridX, gridY);
+        context.restore();
+      }
+
+    }
+
+    // Align drawing to our grid
+    function drawInGrid (gridX, gridY, drawingFunction) {
+      var halfGrid = gridSize / 2;
+      context.save();
+      context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
+      context.scale(marginScale, marginScale);
+      drawingFunction(gridX, gridY);
+      context.restore();
+    }
+
+    // draw hella squares:
+    function draw () {
+      setgridSize();
+      adjustMargins();
+      context.save();
+      var x, y;
+      for(x=0; x < numColumns; x++) {
+        for(y=0; y < numColumns; y++) {
+          drawInGrid(x, y, veraSquare);
+        }
+      }
+      context.restore();
+    }
+
+    resize();
+  </script>
+</html>
