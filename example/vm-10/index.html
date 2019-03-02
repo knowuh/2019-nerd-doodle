@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <title>10: Intermission Radial</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        font-family: Helvetica,  Arial, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      canvas {
+        margin: 0px;
+        padding: 0px;
+        width: 90vw;
+        height: 90vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+  </body>
+  <script>
+
+    // Find a place we can draw:
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+
+    // Variables:
+    var gridSize = 1;
+    var marginScale = 0.9;
+    var numColumns = 1;
+
+    function setgridSize () {
+      if (canvas.width > canvas.height) {
+        gridSize = canvas.height / numColumns;
+      }
+      else {
+        gridSize = canvas.width / numColumns;
+      }
+    }
+
+    function adjustMargins () {
+      var size = gridSize * numColumns;
+      var extraSpaceX = canvas.width - size;
+      var extraSpaceY = canvas.height - size;
+      context.translate(extraSpaceX/2, extraSpaceY/2);
+      setgridSize()
+    }
+
+    function resize () {
+      var {width: w, height: h}  = canvas.getBoundingClientRect();
+      canvas.width = w;
+      canvas.height = h;
+      setgridSize();
+      draw();
+    }
+    window.addEventListener("resize", resize);
+
+    function getColor(hue,  sat, light, alpha) {
+      var h = hue * 365;
+      var s = sat * 100;
+      var l = light * 100;
+      return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
+    }
+
+    function drawCircular (gridX, gridY) {
+      var numPoints = 30;
+      var roundness = 0.9;
+      var symetry = 1;
+      var minR = roundness;
+      var randR = () => Math.random() * (1.0 - minR);
+      var radia=[];
+      var maxRadius = gridSize / 2;
+      var i;
+      var r;
+      var increment = (2 * Math.PI) / numPoints / symetry;
+      for (i = 0; i < numPoints; i++) {
+        radia[i] = randR() + minR;
+      }
+      context.save();
+      context.fillStyle="black";
+      context.beginPath();
+      context.moveTo(0, maxRadius * radia[0])
+      for(j = 0; j < symetry; j++) {
+        for (i= 0; i < radia.length; i++) {
+          context.lineTo(0, maxRadius * radia[i])
+          context.rotate(increment);
+        }
+      }
+      context.closePath();
+      context.stroke();
+      context.restore();
+    }
+
+    function veraSquare(gridX, gridY) {
+      var i = 1;
+      var numSquares = 3;
+      var stepSize = 1 / (numSquares * (gridY + 1))
+      var colorSimilarity = 4;
+      var h = (gridX / numColumns) / colorSimilarity;
+      var s = 0.5;
+      var l = gridY / numColumns;
+      var a = 0.15;
+      context.fillStyle = getColor(h, s, l, a);
+      // sale from  0 to 1 in numSquares steps
+      for (i = 1; i >= 0; i -= stepSize) {
+        context.save();
+        context.scale(i, i);
+        drawCircular(gridX, gridY);
+        context.restore();
+      }
+
+    }
+
+    // Align drawing to our grid
+    function drawInGrid (gridX, gridY, drawingFunction) {
+      var halfGrid = gridSize / 2;
+      context.save();
+      context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
+      context.scale(marginScale, marginScale);
+      drawingFunction(gridX, gridY);
+      context.restore();
+    }
+
+    // draw hella squares:
+    function draw () {
+      setgridSize();
+      adjustMargins();
+      context.save();
+      var x, y;
+      for(x=0; x < numColumns; x++) {
+        for(y=0; y < numColumns; y++) {
+          drawInGrid(x, y, veraSquare);
+        }
+      }
+      context.restore();
+    }
+
+    resize();
+  </script>
+</html>
