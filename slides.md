@@ -283,13 +283,13 @@ From the earliest computer artists.
 ## VM-02: Clean it, make it reusable.
 ## VM-03: Multiple Squares & placement
 ## VM-04: How many / how large?
-## Intermission: Transforms.
-## VM-05: Canvas Transorms. Better fitting.
+## 04b: Intermission: Context & Transforms.
+## VM-05: Make it big.
 ## VM-06: Futher Iteration.
 ## VM-07: Imperfections and randomnesss
 ## VM-08: Parameters and Variations
-## VM-09: Colors (HSLA)
-## VM-10: Make it yours
+## VM-09: HSLA Colors
+## VM-11: Make it yours
 # Animation
 # Collecting code for reuse
 # [Other examples time permitting]

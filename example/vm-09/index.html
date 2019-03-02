@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>08: Vera Molnar</title>
+    <title>09: Vera Molnar</title>
     <style>
       body {
         width: 100vw;
@@ -35,8 +35,8 @@
 
     // Variables:
     var gridSize = 1;
-    var marginScale = 0.6;
-    var numColumns = 4;
+    var marginScale = 0.7;
+    var numColumns = 20;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -64,6 +64,13 @@
     }
     window.addEventListener("resize", resize);
 
+    function getColor(hue,  sat, light, alpha) {
+      var h = hue * 365;
+      var s = sat * 100;
+      var l = light * 100;
+      return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
+    }
+
     function drawSquare (gridX, gridY) {
       var halfGrid = gridSize / 2;
       // Expect the origin, 0,0 to be in the center.
@@ -83,14 +90,20 @@
       context.lineTo(startX +r(), endY +r()) ;
 
       context.closePath();
-
-      context.stroke();
+      context.fill();
+      // context.stroke();
     }
 
     function veraSquare(gridX, gridY) {
       var i = 1;
       var numSquares = 3;
       var stepSize = 1 / (numSquares * (gridY + 1))
+      var colorSimilarity = 4;
+      var h = (gridX / numColumns) / colorSimilarity;
+      var s = 0.5;
+      var l = gridY / numColumns;
+      var a = 0.15;
+      context.fillStyle = getColor(h, s, l, a);
       // sale from  0 to 1 in numSquares steps
       for (i = 1; i >= 0; i -= stepSize) {
         context.save();

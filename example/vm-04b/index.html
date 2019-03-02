@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>02: Vera Molnar</title>
+    <title>04b: Canvas Transforms</title>
     <style>
       body {
         width: 100vw;
@@ -19,35 +19,48 @@
     </style>
   </head>
   <body>
-    02: Vera Molnar
+    04b: Canvas Transforms
     <canvas width="500" height="500"></canvas>
   </body>
   <script>
 
-    // Variables:
-    var squareSize = 100;
     // Find a place we can draw:
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
 
 
     // Draw a square at xy:
-    var drawSquare = function(xLoc, yLoc, size) {
+    function drawSquare (xLoc, yLoc, size) {
       context.beginPath();
-
       context.moveTo(xLoc       ,  yLoc       );
       context.lineTo(xLoc + size,  yLoc       );
       context.lineTo(xLoc + size,  yLoc + size);
       context.lineTo(xLoc       ,  yLoc + size);
-
       context.closePath();
       context.stroke();
     }
 
-    // draw 4 sqaures
-    drawSquare(10, 10, squareSize);
-    drawSquare(120, 10, squareSize);
-    drawSquare(230, 10, squareSize);
-    drawSquare(340, 10, squareSize);
+    // Variables:
+    var squareSize = 100;
+    var rotation = Math.PI / 4;
+
+    context.save();
+    // context.rotate(Math.PI / 4)
+    context.strokeStyle="red";
+    drawSquare(0, 0, squareSize);
+
+    context.translate(squareSize, squareSize);
+    // context.rotate(Math.PI / 4)
+    context.strokeStyle="blue"
+    drawSquare(0,0, squareSize);
+
+    // context.restore();
+    // context.rotate(Math.PI / 4)
+    context.scale(2, 2);
+    context.translate(squareSize, 0);
+    context.rotate(Math.PI / 4)
+    context.strokeStyle="green"
+    drawSquare(0,0, squareSize);
+
   </script>
 </html>
