@@ -289,9 +289,8 @@ From the earliest computer artists.
 ## VM-07: Imperfections and randomnesss
 ## VM-08: Parameters and Variations
 ## VM-09: HSLA Colors
-## VM-10: Intermission II: Radial
-## VM-11: Make it yours
-# Animation
+## VM-11: Radial
+## VM-12: Animation
 # Collecting code for reuse
 # [Other examples time permitting]
 # Artists and Educators
