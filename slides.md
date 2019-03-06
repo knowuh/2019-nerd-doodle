@@ -1,33 +1,46 @@
 
 # Doodling with the Canvas API
-@knowuh
-knowuh@gmail.com http://paessel.com/
+<div class="left">
+  [@knowuh](https://twitter.com/knowuh/)<br/>
+  knowuh@gmail.com <br/>
+  http://paessel.com/
+</div>
+
 
 <slide>
 
 # What is this talk?
-  * A light introduction to the practice of creative coding.
-  * The cliff notes for a class "Sketching with Code"
+
+<vertical>
+<img src="images/spiro-graph-box.jpg"/>
+
+<vertical>
+<img src="images/spiro-graph-art.jpg"/>
+
+<vertical>
+# What is this talk?
+  * An introduction to creative coding.
+  * Highlight real from a class *Sketching with Code*.
   * This talk is for newbies.
   * This talk is for cranky old-timers.
 
-
 <vertical>
 ## What is this talk?
-* I will give you cheat codes!
-* We find out about [canvas 2d api](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-* We will learn some art history.
-* We use plain-old Javascript.
+* Some visual tricks.
+* Some art history.
+* Some Javascript.
+* An intro to [canvas 2d api](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+* We use naked Javascript.
 
 <vertical>
-## Why should I?
-  * To try programming.
-  * To engage in visual explorations.
+## Why sketch with code?
+  * To teach and learn programming.
+  * To discover things and have fun.
+  * For happy accidents.
   * It's good for your brain*.
 
 </br></br>
-*I am not a doctor*
-
+*not a doctor*
 
 <vertical>
 ## Why Canvas
@@ -43,24 +56,31 @@ knowuh@gmail.com http://paessel.com/
 <slide>
 
 ## Who am I?
-  * I studied visual art and design.
-  * I have been programming for 35+ years.
+  * A student and teacher of visual art and design.
+  * Someone who has been programmg a long time.
   * I want you to make things.
+
+<vertical>
+<img src="images/umass-1975.png"/>
+
+<vertical>
+<img src="images/dec-writer-2.jpg"/>
 
 <slide>
 
 # Visual hacks
-  * Doodle and sketch.
+  * Sketch.
   * Use arbitrary constraints.
   * Learn about gestalt principles.
   * Some quick tips.
 
 <vertical>
-## Sketch for ideas
-* Use a pencil.
-* Its not precious.
-* Notice what interests you.
-* Ask questions.
+## Sketching
+* Start on paper.
+* Create many examples quickly.
+* They are disposable.
+* Good sketches generate questions.
+* Process not product.
 
 <br/><br/>
 
@@ -69,7 +89,10 @@ knowuh@gmail.com http://paessel.com/
 <span class="fragment">**The**.</span>
 <span class="fragment">**Time**.</span>
 
-
+Note:
+* Artschool 101
+* Not precious.
+* Can be code …
 <vertical>
 
 ## Constraints
@@ -86,27 +109,31 @@ By holding some things constant, we focus on the possibilities of the remaining 
   <div class="left">
     The Gestalt Principles are a set of laws arising from 1920s' psychology, describing how humans typically see objects by grouping similar elements, recognizing patterns and simplifying complex images. Designers use these to engage users via powerful -yet natural- "tricks" of perspective and best practice design standards.
   <div class="left">
+
 <vertical>
+
 ## Gestlat principles of design
 * Gestalt principles are real. They are grounded in the *mechanics* of human perception.
 * Art, design, and [Optical illusions](https://en.wikipedia.org/wiki/Optical_illusion) exploit artifacts of human perception.
 
 <vertical>
-## Some gestalt princples are..
+## Some gestalt princples are …
 
 * Closure: Our brain fills in gaps.
-* Common Fate: We group elements that move the same direction.
-* Common Region: We group elements in the same perceived enclosure.
 * Proximity: We group closer-together elements.
 * Continuation: We follow lines.
 * Similarity: We look for differences and commonality of shape.
 
 <vertical>
+<img src="images/proximity.jpg"/>
+<vertical>
+<img src="images/closure.jpg"/>
+<vertical>
 ## Book about gestalt theory:
 * ["Primer of Visual Literacy"](https://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290) by Donis A. Dondis.
 
 <slide>
-# Cheat codes:
+# Artist cheat codes:
   * Currate.
   * Crop.
   * Contrast.
@@ -129,47 +156,26 @@ Note:
 
 <slide>
 # Programming hacks
-* Get *something* on the screen ASAP.
 * Reduce friction.
 * Wishful programming.
+* Get *something* on the screen ASAP.
 * Generalize.
-* Clean up.
 * HSLA color.
 * Google MDN.
 
 <vertical>
 ## Wishful programming
 ```
-  var drawSquare = function (x, y, size) {
+
+  drawSquare(10, 10, 100)
+  drawSquare(120, 10, 100)
+  drawSquare(240, 10, 100)
+
+  function drawSquare (x, y, size) {
     // Not sure what to do yet!
     console.log('drawing a square:', x, y, size)
   }
 
-  var drawTheSquares = function () {
-    drawSquare(10, 10, 100)
-    drawSquare(120, 10, 100)
-    drawSquare(240, 10, 100)
-  }
-
-  drawTheSquares()
-```
-
-<vertical>
-## Generalize
-```
-  var squareSize = 100
-  var borderSize = 10
-
-  var drawSquare = function (column, row) {
-    var x = column * (squareSize + borderSize);
-    var y = row * (squareSize + borderSize);
-    drawSquareAtXY(x, y);
-  }
-
-  var drawTheSquares = function () {
-    drawSquare(0, 0)
-    drawSquare(1, 1)
-  }
 
 ```
 
@@ -241,10 +247,12 @@ From the earliest computer artists.
 
 
 <slide>
-<div class="artist">
+<img src="images/mulnar/vera-mulnar-1.png"/>
+
+<!-- <div class="artist">
   <div>Vera Molnar – Artist & Designer<div>
   <img src="images/mulnar/vera-mulnar-1.png"/>
-</div>
+</div> -->
 
 
 <slide>
@@ -297,11 +305,13 @@ From the earliest computer artists.
 # Technical Resources
 
 
-META:
+## META:
 10 main topics.  No more than 4 minutes per topic (average).
 19 slides.  ~2 minutes per slide.
 
 ### Unsorted Notes
+
+[Apple II](https://www.scullinsteel.com/apple2/)
 
 [vera molnar](https://en.wikipedia.org/wiki/Vera_Moln%C3%A1r
 She is considered a pioneer of computer art.

@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
 }
-.artist img {
-  height: 90vh;
+.reveal img {
+  max-height: 50vh;
+  max-width: 50vw;
 }
