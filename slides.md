@@ -254,27 +254,22 @@ From the earliest computer artists.
   <img src="images/mulnar/vera-mulnar-1.png"/>
 </div> -->
 
+<slide>
+  <img src="images/canvas-axis.jpg"/>
+
 
 <slide>
-## VM1: Draw a some squares on a canvas
+## VM-01: Squares on a canvas
 ```
 <html>
-  <head>
-    <title>Vera Molnar 01</title>
-    <style>
-      // ...
-    </style>
-  </head>
-  <body>
-    Vera Molnar 01
-    <canvas width="500" height="500"></canvas>
-  </body>
+  <head> … </head>
+  <body> … <canvas width="500" height="500"></canvas> </body>
   <script>
-    // Get some place to draw:
+    // Where to draw:
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
 
-    // draw one square:
+    // Draw a square:
     context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(10,10);
@@ -284,14 +279,43 @@ From the earliest computer artists.
     context.lineTo(10,10);
     context.stroke();
 
+    // cheater way:  
+    context.strokeRect(10, 10, 100, 100);
+
   </script>
 </html>
 ```
 <slide>
-## VM-02: Clean it, make it reusable.
-## VM-03: Multiple Squares & placement
+## VM-02: Reuse.
+```javascript
+    // Draw a square at xy:
+    function drawSquare (xLoc, yLoc, size) {
+      context.beginPath();
+      context.moveTo(xLoc       ,  yLoc       );
+      context.lineTo(xLoc + size,  yLoc       );
+      context.lineTo(xLoc + size,  yLoc + size);
+      context.lineTo(xLoc       ,  yLoc + size);
+      context.closePath();
+      context.stroke();
+    }
+
+    // draw 4 sqaures
+    var squareSize = 100;
+    drawSquare(10, 10, squareSize);
+    drawSquare(120, 10, squareSize);
+    drawSquare(230, 10, squareSize);
+    drawSquare(340, 10, squareSize);
+```
+
+<slide>
+## VM-03: Multiple Squares
+
+<slide>
 ## VM-04: How many / how large?
+
+<slide>
 ## 04b: Intermission: Context & Transforms.
+
 ## VM-05: Make it big.
 ## VM-06: Futher Iteration.
 ## VM-07: Imperfections and randomnesss
