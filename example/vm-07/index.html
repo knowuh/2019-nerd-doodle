@@ -35,8 +35,8 @@
 
     // Variables:
     var gridSize = 1;
-    var marginScale = 0.7;
-    var numColumns = 5;
+    var marginScale = 0.8;
+    var numColumns = 10;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -64,22 +64,26 @@
     }
     window.addEventListener("resize", resize);
 
+    function randomNudge(gridFraction) {
+      var randAmount = gridSize * gridFraction;
+      return randAmount - Math.random() * (randAmount/2)
+    }
+
     function drawSquare () {
       var halfGrid = gridSize / 2;
-      // Expect the origin, 0,0 to be in the center.
-      var startX = - halfGrid;
-      var startY = - halfGrid;
-      var randAmout = halfGrid / 4;
-      var r = () => randAmout - Math.random() * (randAmout/2)
-      var endX = halfGrid;
-      var endY = halfGrid;
+      var wiggleFraction = 0.3;
+
+      var startX = - halfGrid + randomNudge(wiggleFraction) ;
+      var startY = - halfGrid + randomNudge(wiggleFraction) ;
+      var endX = halfGrid + randomNudge(wiggleFraction) ;
+      var endY = halfGrid + randomNudge(wiggleFraction) ;
 
       context.beginPath();
 
-      context.moveTo(startX + r(), startY +r());
-      context.lineTo(endX + r(),   startY +r());
-      context.lineTo(endX + r(),   endY + r()) ;
-      context.lineTo(startX +r(), endY +r()) ;
+      context.moveTo(startX, startY);
+      context.lineTo(endX,   startY);
+      context.lineTo(endX,   endY);
+      context.lineTo(startX, endY) ;
 
       context.closePath();
       context.stroke();

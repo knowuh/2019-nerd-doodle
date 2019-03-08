@@ -11,151 +11,114 @@
 
 # What is this talk?
 
-<vertical>
+<slide>
 <img src="images/spiro-graph-box.jpg"/>
 
-<vertical>
+<slide>
 <img src="images/spiro-graph-art.jpg"/>
 
-<vertical>
+<slide>
 # What is this talk?
-  * An introduction to creative coding.
-  * Highlight real from a class *Sketching with Code*.
-  * This talk is for newbies.
-  * This talk is for cranky old-timers.
+  * An introduction to creative coding
+  * Highlights from *Sketching with Code* course
+  * For newbies
+  * For cranky old-timers
 
-<vertical>
-## What is this talk?
-* Some visual tricks.
-* Some art history.
-* Some Javascript.
+<slide>
+## What happens next?
 * An intro to [canvas 2d api](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-* We use naked Javascript.
+* Using minimal Javascript
+* Live mistakes
+* Visual tricks
+* Art history
+* Resources
 
-<vertical>
+<slide>
+<img src="images/doodle2.png"/>
+
+<slide>
+<img src="images/doodle1.png"/>
+
+
+<slide>
 ## Why sketch with code?
-  * To teach and learn programming.
-  * To discover things and have fun.
-  * For happy accidents.
-  * It's good for your brain*.
+  * Educational
+  * Happy accidents
+  * Good for the brain*
 
-</br></br>
-*not a doctor*
-
-<vertical>
-## Why Canvas
-  * Javascript is everywhere.
-  * More immediate than SVG or WebGL.
-  * No Frameworks, no building, single page.
-
+</br>
+<p class="tiny">* I am not a doctor</p>
 
 <slide>
 "I like to think of play not as an activity, but as an attitude, a way of engaging with the world"
 <br/>–  *Mitchel Resnick*  (@mres)
 
+
 <slide>
 
 ## Who am I?
-  * A student and teacher of visual art and design.
-  * Someone who has been programmg a long time.
-  * I want you to make things.
+  * Developer
+  * Student and teacher of visual art
+  * Longtime programmer
+  * Cheerleader
 
-<vertical>
+<slide>
 <img src="images/umass-1975.png"/>
 
-<vertical>
+<slide>
 <img src="images/dec-writer-2.jpg"/>
 
 <slide>
-
-# Visual hacks
-  * Sketch.
-  * Use arbitrary constraints.
-  * Learn about gestalt principles.
-  * Some quick tips.
-
-<vertical>
-## Sketching
-* Start on paper.
-* Create many examples quickly.
-* They are disposable.
-* Good sketches generate questions.
-* Process not product.
-
-<br/><br/>
-
-<span class="fragment">**Sketch**.</span>
-<span class="fragment">**All**.</span>
-<span class="fragment">**The**.</span>
-<span class="fragment">**Time**.</span>
-
-Note:
-* Artschool 101
-* Not precious.
-* Can be code …
-<vertical>
-
-## Constraints
-By holding some things constant, we focus on the possibilities of the remaining parameters.
-* Music
-* [Haiku](https://en.wikipedia.org/wiki/Haiku)
-* [Dogme films](https://en.m.wikipedia.org/wiki/Dogme_95)
-* Only paint in 2" squares.
-* Only use 400 pixels.
-* Only use black and white.
-
-<vertical>
-## Gestlat principles of design
-  <div class="left">
-    The Gestalt Principles are a set of laws arising from 1920s' psychology, describing how humans typically see objects by grouping similar elements, recognizing patterns and simplifying complex images. Designers use these to engage users via powerful -yet natural- "tricks" of perspective and best practice design standards.
-  <div class="left">
-
-<vertical>
-
-## Gestlat principles of design
-* Gestalt principles are real. They are grounded in the *mechanics* of human perception.
-* Art, design, and [Optical illusions](https://en.wikipedia.org/wiki/Optical_illusion) exploit artifacts of human perception.
-
-<vertical>
-## Some gestalt princples are …
-
-* Closure: Our brain fills in gaps.
-* Proximity: We group closer-together elements.
-* Continuation: We follow lines.
-* Similarity: We look for differences and commonality of shape.
-
-<vertical>
-<img src="images/proximity.jpg"/>
-<vertical>
-<img src="images/closure.jpg"/>
-<vertical>
-## Book about gestalt theory:
-* ["Primer of Visual Literacy"](https://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290) by Donis A. Dondis.
+<img src="images/duchamp.png"/>
 
 <slide>
-# Artist cheat codes:
-  * Currate.
-  * Crop.
-  * Contrast.
-  * Accidents.
-  * Fake it.
-  * Steal and  **give credit**.
-  <br/><br/>
-<div>
-  <span class="fragment">Make it **Big**.</span>
-  <span class="fragment">Make it **red**.</span>
-  <span class="fragment">Or make **many** of them.</span>
+# Early Computer artists.
+
+<vertical>
+<div class="artist">
+  <div> Michael Noll – Engineer<div>
+  <img src="images/noll/noll-2.png"/>
 </div>
 
-Note:
-* Take 1000 photographs, and choose one.
-* Crop: Your initial framing will be wrong. Direct attention. Cut out noise.
-* Constrast: What is the focus, what will stand out?
-* Accidents: investigate, celebrate, incorporate your accidents.
-* Fake it: Its art. Its all fake. Their is no purity, its all for show.
+<vertical>
+<div class="artist">
+  <div>Frieder Nake – Mathemetician<div>
+  <img src="images/nake/nake-1.png"/>
+</div>
+
+
+<vertical>
+<div class="artist">
+  <div>George Nees – Math & Philosophy<div>
+  <img src="images/nees/nees.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Vera Molnar – Artist<div>
+  <img src="images/mulnar/vera-mulnar-1.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Vera Molnar – Artist<div>
+  <img src="images/mulnar/vera-mulnar-2.png"/>
+</div>
+
+<vertical>
+<div class="artist">
+  <div>Vera Molnar – Artist<div>
+  <img src="images/mulnar/vera-mulnar-3.png"/>
+</div>
 
 <slide>
-# Programming hacks
+#### VLW / ACG
+<img src="images/maeda-mug.png"/>
+
+<slide>
+<img src="images/maeda-sketch.png"/>
+<slide>
+# Teaching Programming
 * Reduce friction.
 * Wishful programming.
 * Get *something* on the screen ASAP.
@@ -179,82 +142,18 @@ Note:
 
 ```
 
-
 <slide>
-# Finding Inspiration
-From the earliest computer artists.
-
-<vertical>
-<div class="artist">
-  <div> Michael Noll – Engineer<div>
-  <img src="images/noll/noll-1.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div> Michael Noll – Engineer<div>
-  <img src="images/noll/noll-2.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div> Michael Noll – Engineer<div>
-  <img src="images/noll/noll-3.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div>Frieder Nake – Mathemetician<div>
-  <img src="images/nake/nake-1.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div>Frieder Nake – Mathemetician<div>
-  <img src="images/nake/nake-2.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div>Frieder Nake – Mathemetician<div>
-  <img src="images/nake/nake-3.png"/>
-</div>
-
-
-<vertical>
-<div class="artist">
-  <div>Georg Nees – Mathematics & Philosophy<div>
-  <img src="images/nees/nees.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div>Vera Molnar – Artist & Designer<div>
-  <img src="images/mulnar/vera-mulnar-1.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div>Vera Molnar – Artist & Designer<div>
-  <img src="images/mulnar/vera-mulnar-2.png"/>
-</div>
-
-<vertical>
-<div class="artist">
-  <div>Vera Molnar – Artist & Designer<div>
-  <img src="images/mulnar/vera-mulnar-3.png"/>
-</div>
-
-
-<slide>
+## Our Goal
 <img src="images/mulnar/vera-mulnar-1.png"/>
+<p class="tiny">Point of departure: ~1970</p>
 
 <slide>
+## canvas
   <img src="images/canvas-axis.jpg"/>
-
+  <p class="tiny">context</p>
 <slide>
 
-## A Single page sketch template
+## One-page sketch template
 ```html
   <html>
     <head> … </head>
@@ -272,7 +171,7 @@ From the earliest computer artists.
 ```
 
 <slide>
-## VM-01: Square on a canvas
+## Square on a canvas
 <a href="/example/vm-01" target="sample">demo</a>
 
 ```javascript
@@ -289,10 +188,14 @@ From the earliest computer artists.
     context.lineTo(10,10);
     context.stroke();
 ```
+<vertical>
+## 01
+<img src="images/1.png"/>
 
 <slide>
-## VM-02: Multiple Squares
+## Multiple Squares
 <a href="/example/vm-02" target="sample">demo</a>
+
 ```javascript
     // Draw a square at x,y of size:
     function drawSquare (xLoc, yLoc, size) {
@@ -309,12 +212,13 @@ From the earliest computer artists.
     var squareSize = 100;
     drawSquare(10, 10, squareSize);
     drawSquare(120, 10, squareSize);
-
 ```
-
+<vertical>
+## 02
+<img src="images/2.png"/>
 
 <slide>
-## VM-03: Squares on a Grid
+## Squares on a Grid
 
 <a href="/example/vm-03" target="sample">demo</a>
 
@@ -340,10 +244,13 @@ From the earliest computer artists.
     drawSquare(2, 1);
     drawSquare(0, 2);
 ```
+<vertical>
+## 03
+<img src="images/3.png"/>
 
 
 <slide>
-## VM-04: Loop it
+## Loop it
 <a href="/example/vm-04" target="sample">demo</a>
 
 ```javascript
@@ -357,31 +264,36 @@ From the earliest computer artists.
       }
     }
 ```
+<vertical>
+## 04
+#### *--record scratch--*
+<img src="images/4.png"/>
 
 <slide>
-## Context & Transforms.
+## Context & Transforms
 
-Remember this?
+<slide>
+### Remember this?
 <img src="images/canvas-axis.jpg"/>
 
-<vertical>
+<slide>
 ## We can change it with:
-
-* `canvas.tranlate(…)`,
-* `canvas.rotate(…)`,
-* `canvas.scale(…)`
-* `canvas.transform(…)`
+* `context.fillStyle=`
+* `context.tranlate(…)`
+* `context.rotate(…)`
+* `context.scale(…)`
+* `context.transform(…)`
+* `context.restore` 
 
 <vertical>
 <img src="images/transforms.jpg"/>
 
 <slide>
-## VM-05: Make it big.
+## Make it big
 <a href="/example/vm-05" target="sample">demo</a>
 
 ```javascript
     // Variables:
-    var gridSize = 1;
     var marginScale = 0.9;
     var numColumns = 3;
 
@@ -412,12 +324,15 @@ Remember this?
 
     window.addEventListener("resize", resize);
 ```
+<vertical>
+##### 05
+<img src="images/5.png"/>
 
 <slide>
-## VM-06: Futher Iteration.
+## Moar loops
 <a href="/example/vm-06" target="sample">demo</a>
 ```javascript
-function veraSquare() {
+    function veraSquare() {
       var i = 0;
       var numSquares = 10;
       var stepSize = 1 / numSquares;
@@ -430,7 +345,7 @@ function veraSquare() {
       }
     }
 
-    // Align drawing to our grid
+    // Align a drawing function into a grid
     function drawInGrid (gridX, gridY, drawingFunction) {
       var halfGrid = gridSize / 2;
       context.save();
@@ -440,7 +355,7 @@ function veraSquare() {
       context.restore();
     }
 
-    // draw hella squares:
+    // draw all the squares
     function draw () {
       setgridSize();
       adjustMargins();
@@ -454,12 +369,133 @@ function veraSquare() {
       context.restore();
     }
     ```
+<vertical>
+##### 06
+<img src="images/6.png"/>
+
 <slide>
-## VM-07: Imperfections and randomnesss
+### Imperfectionz & randomnez
+<a href="/example/vm-07" target="sample">demo</a>
+
+```javascript
+  function randomNudge(gridFraction) {
+    var randAmount = gridSize * gridFraction;
+    return randAmount - Math.random() * (randAmount/2)
+  }
+
+  function drawSquare () {
+    var halfGrid = gridSize / 2;
+    var wiggleFraction = 0.3;
+
+    var startX = - halfGrid + randomNudge(wiggleFraction) ;
+    var startY = - halfGrid + randomNudge(wiggleFraction) ;
+    var endX = halfGrid + randomNudge(wiggleFraction) ;
+    var endY = halfGrid + randomNudge(wiggleFraction) ;
+
+    context.beginPath();
+
+    context.moveTo(startX, startY);
+    context.lineTo(endX,   startY);
+    context.lineTo(endX,   endY);
+    context.lineTo(startX, endY) ;
+
+    context.closePath();
+    context.stroke();
+  }
+```
+
+<slide>
 ## VM-08: Parameters and Variations
+
+<slide>
 ## VM-09: HSLA Colors
+
+<slide>
 ## VM-11: Radial
+
+<slide>
 ## VM-12: Animation
+
+
+
+<slide>
+# Accelerated Art School
+  * Sketch.
+  * Use arbitrary constraints.
+  * Learn about gestalt principles.
+  * Some quick tips.
+
+<vertical>
+## Sketching:
+* On paper.
+* Many examples quickly.
+* Disposable.
+* Generate questions.
+* Process not product.
+
+<br/><br/>
+
+<span class="fragment">**Sketch**.</span>
+<span class="fragment">**All**.</span>
+<span class="fragment">**The**.</span>
+<span class="fragment">**Time**.</span>
+
+<vertical>
+## Constraints
+By holding some things constant, we focus on the possibilities of the remaining parameters.
+* Music
+* [Haiku](https://en.wikipedia.org/wiki/Haiku)
+* [Dogme films](https://en.m.wikipedia.org/wiki/Dogme_95)
+* eg: only paint 2" squares
+* eg: only 400 pixels
+* eg: only black and white
+
+<vertical>
+## Gestlat principles of design
+  <div class="left">
+    The Gestalt Principles are a set of laws arising from 1920s' psychology, describing how humans typically see objects by grouping similar elements, recognizing patterns and simplifying complex images. Designers use these to engage users via powerful -yet natural- "tricks" of perspective and best practice design standards.
+  <div class="left">
+
+<vertical>
+## Gestlat principles of design
+* Gestalt principles are real. They are grounded in the *mechanics* of human perception.
+* Art, design, and [Optical illusions](https://en.wikipedia.org/wiki/Optical_illusion) exploit artifacts of human perception.
+
+<vertical>
+## Some gestalt princples are …
+
+* Closure: Our brain fills in gaps.
+* Proximity: We group closer-together elements.
+* Continuation: We follow lines.
+* Similarity: We look for differences and commonality of shape.
+
+<vertical>
+<img src="images/proximity.jpg"/>
+<vertical>
+<img src="images/closure.jpg"/>
+<vertical>
+## Book about gestalt theory:
+* ["Primer of Visual Literacy"](https://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290) by Donis A. Dondis.
+
+<vertical>
+## Quick Tips:
+  * Currate & crop
+  * Contrasting elements
+  * Accidents
+  * Steal and  **give credit**
+  <br/><br/>
+<div>
+  <span class="fragment">Make it **Big**.</span>
+  <span class="fragment">Make it **red**.</span>
+  <span class="fragment">Or make **many** of them.</span>
+</div>
+
+Note:
+* Take 1000 photographs, and choose one.
+* Crop: Your initial framing will be wrong. Direct attention. Cut out noise.
+* Constrast: What is the focus, what will stand out?
+* Accidents: investigate, celebrate, incorporate your accidents.
+* Fake it: Its art. Its all fake. Their is no purity, its all for show.
 
 
 <slide>
