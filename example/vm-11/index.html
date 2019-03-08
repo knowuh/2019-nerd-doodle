@@ -35,8 +35,8 @@
 
     // Variables:
     var gridSize = 1;
-    var marginScale = 0.9;
-    var numColumns = 8;
+    var marginScale = 2.1;
+    var numColumns = 2;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -113,7 +113,7 @@
       var maxRadius = gridSize / 2;
       var symetry = 1
       var wiggleAmt = 0.1; // columnScale(gridY, 0.8, 0.01);
-      var roundness = 0.8;
+      var roundness = 0.1;
       var roundness = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 0.1, 0.9);
       // var roundness = columnScale(gridX, 0.99, 0.01);
       var numPoints = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 3, 20);
@@ -142,7 +142,7 @@
       var i = 1;
       var numSteps = columnScale(gridY, 1, 10);
       var stepSize = 1 / numSteps;
-      var h = columnScale(gridX, 0, 0.2);
+      var h = columnScale(gridX, 0, 0.1);
       var s = 0.5;
       var l = columnScale(gridY, 0.5, 1);
       var a = 0.5;

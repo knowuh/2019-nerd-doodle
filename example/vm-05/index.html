@@ -38,7 +38,7 @@
     var marginScale = 0.9;
     var numColumns = 3;
 
-    var setgridSize = function(){
+    function setgridSize() {
       if (canvas.width > canvas.height) {
         gridSize = canvas.height / numColumns;
       }
@@ -47,7 +47,7 @@
       }
     }
 
-    var adjustMargins = function () {
+    function adjustMargins () {
       var size = gridSize * numColumns;
       var extraSpaceX = canvas.width - size;
       var extraSpaceY = canvas.height - size;
@@ -55,7 +55,7 @@
       setgridSize()
     }
 
-    var resize = function () {
+    function resize() {
       var {width: w, height: h}  = canvas.getBoundingClientRect();
       canvas.width = w;
       canvas.height = h;

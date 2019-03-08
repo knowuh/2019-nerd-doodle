@@ -22,14 +22,13 @@
     02: Vera Molnar
     <canvas width="500" height="500"></canvas>
   </body>
-  <script>    // Variables:
-    var squareSize = 100;
+  <script>
     // Find a place we can draw:
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
 
 
-    // Draw a square at xy:
+    // Draw a square at x,y of size:
     function drawSquare (xLoc, yLoc, size) {
       context.beginPath();
       context.moveTo(xLoc       ,  yLoc       );
@@ -40,12 +39,10 @@
       context.stroke();
     }
 
-    // draw 4 sqaures
+    // draw some squares
     var squareSize = 100;
     drawSquare(10, 10, squareSize);
     drawSquare(120, 10, squareSize);
-    drawSquare(230, 10, squareSize);
-    drawSquare(340, 10, squareSize);
 
   </script>
 </html>

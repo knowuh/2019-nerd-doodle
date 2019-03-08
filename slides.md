@@ -249,27 +249,37 @@ From the earliest computer artists.
 <slide>
 <img src="images/mulnar/vera-mulnar-1.png"/>
 
-<!-- <div class="artist">
-  <div>Vera Molnar – Artist & Designer<div>
-  <img src="images/mulnar/vera-mulnar-1.png"/>
-</div> -->
-
 <slide>
   <img src="images/canvas-axis.jpg"/>
 
+<slide>
+
+## A Single page sketch template
+```html
+  <html>
+    <head> … </head>
+    <body>
+      <canvas width="500" height="500"></canvas>
+    </body>
+    <script>
+
+      // what we are doing is all in between these script tags
+      var canvas = document.querySelector('canvas');
+      var context = canvas.getContext('2d');
+
+    </script>
+  </html>
+```
 
 <slide>
-## VM-01: Squares on a canvas
-```
-<html>
-  <head> … </head>
-  <body> … <canvas width="500" height="500"></canvas> </body>
-  <script>
-    // Where to draw:
-    var canvas = document.querySelector('canvas');
-    var context = canvas.getContext('2d');
+## VM-01: Square on a canvas
+<a href="/example/vm-01" target="sample">demo</a>
 
-    // Draw a square:
+```javascript
+    // Easy way to draw a rectantangle:  
+    context.strokeRect(10, 10, 100, 100);
+
+    // The hard way
     context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(10,10);
@@ -278,17 +288,13 @@ From the earliest computer artists.
     context.lineTo(10,100);
     context.lineTo(10,10);
     context.stroke();
-
-    // cheater way:  
-    context.strokeRect(10, 10, 100, 100);
-
-  </script>
-</html>
 ```
+
 <slide>
-## VM-02: Reuse.
+## VM-02: Multiple Squares
+<a href="/example/vm-02" target="sample">demo</a>
 ```javascript
-    // Draw a square at xy:
+    // Draw a square at x,y of size:
     function drawSquare (xLoc, yLoc, size) {
       context.beginPath();
       context.moveTo(xLoc       ,  yLoc       );
@@ -299,54 +305,186 @@ From the earliest computer artists.
       context.stroke();
     }
 
-    // draw 4 sqaures
+    // draw some squares
     var squareSize = 100;
     drawSquare(10, 10, squareSize);
     drawSquare(120, 10, squareSize);
-    drawSquare(230, 10, squareSize);
-    drawSquare(340, 10, squareSize);
+
+```
+
+
+<slide>
+## VM-03: Squares on a Grid
+
+<a href="/example/vm-03" target="sample">demo</a>
+
+```javascript
+    var squareSize = 140;
+    var padding = 10;
+
+    // Draw a square at grid-y grid-y:
+    function drawSquare(gridX, gridY) {
+      var startX = gridX * (squareSize + padding) + padding;
+      var startY = gridY * (squareSize + padding) + padding;
+      context.beginPath();
+      context.moveTo(startX,               startY);
+      context.lineTo(startX + squareSize,  startY);
+      context.lineTo(startX + squareSize,  startY + squareSize) ;
+      context.lineTo(startX,               startY + squareSize) ;
+      context.closePath();
+      context.stroke();
+    }
+
+    drawSquare(0, 0);
+    drawSquare(1, 0);
+    drawSquare(2, 1);
+    drawSquare(0, 2);
+```
+
+
+<slide>
+## VM-04: Loop it
+<a href="/example/vm-04" target="sample">demo</a>
+
+```javascript
+   // hella squares:
+    var x, y;
+    var numWide = 4;
+    var numTall = 4;
+    for(x=0; x < numWide; x++) {
+      for(y=0; y < numTall; y++) {
+        drawSquare(x,y);
+      }
+    }
 ```
 
 <slide>
-## VM-03: Multiple Squares
+## Context & Transforms.
+
+Remember this?
+<img src="images/canvas-axis.jpg"/>
+
+<vertical>
+## We can change it with:
+
+* `canvas.tranlate(…)`,
+* `canvas.rotate(…)`,
+* `canvas.scale(…)`
+* `canvas.transform(…)`
+
+<vertical>
+<img src="images/transforms.jpg"/>
 
 <slide>
-## VM-04: How many / how large?
-
-<slide>
-## 04b: Intermission: Context & Transforms.
-
 ## VM-05: Make it big.
+<a href="/example/vm-05" target="sample">demo</a>
+
+```javascript
+    // Variables:
+    var gridSize = 1;
+    var marginScale = 0.9;
+    var numColumns = 3;
+
+    function setgridSize() {
+      if (canvas.width > canvas.height) {
+        gridSize = canvas.height / numColumns;
+      }
+      else {
+        gridSize = canvas.width / numColumns;
+      }
+    }
+
+    function adjustMargins () {
+      var size = gridSize * numColumns;
+      var extraSpaceX = canvas.width - size;
+      var extraSpaceY = canvas.height - size;
+      context.translate(extraSpaceX/2, extraSpaceY/2);
+      setgridSize()
+    }
+
+    function resize() {
+      var {width: w, height: h}  = canvas.getBoundingClientRect();
+      canvas.width = w;
+      canvas.height = h;
+      setgridSize();
+      draw();
+    }
+
+    window.addEventListener("resize", resize);
+```
+
+<slide>
 ## VM-06: Futher Iteration.
+<a href="/example/vm-06" target="sample">demo</a>
+```javascript
+function veraSquare() {
+      var i = 0;
+      var numSquares = 10;
+      var stepSize = 1 / numSquares;
+      // sale from  0 to 1 in numSquares steps
+      for (i = 0; i <= 1; i += stepSize) {
+        context.save();
+        context.scale(i, i);
+        drawSquare();
+        context.restore();
+      }
+    }
+
+    // Align drawing to our grid
+    function drawInGrid (gridX, gridY, drawingFunction) {
+      var halfGrid = gridSize / 2;
+      context.save();
+      context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
+      context.scale(marginScale, marginScale);
+      drawingFunction();
+      context.restore();
+    }
+
+    // draw hella squares:
+    function draw () {
+      setgridSize();
+      adjustMargins();
+      context.save();
+      var x, y;
+      for(x=0; x < numColumns; x++) {
+        for(y=0; y < numColumns; y++) {
+          drawInGrid(x, y, veraSquare);
+        }
+      }
+      context.restore();
+    }
+    ```
+<slide>
 ## VM-07: Imperfections and randomnesss
 ## VM-08: Parameters and Variations
 ## VM-09: HSLA Colors
 ## VM-11: Radial
 ## VM-12: Animation
-# Collecting code for reuse
-# [Other examples time permitting]
-# Artists and Educators
-# Technical Resources
 
 
-## META:
-10 main topics.  No more than 4 minutes per topic (average).
-19 slides.  ~2 minutes per slide.
+<slide>
+## Resources: low-friction tools
 
-### Unsorted Notes
+* [surge](https://surge.sh/) - instantly publish a website
+* [code pen](https://codepen.io/) - scratch-pad for websites
+* [live  server](https://www.npmjs.com/package/live-server) - quick feedback
+* [Vistual Studio Code](https://code.visualstudio.com/) -- nice editor.
+* [shader toy](https://www.shadertoy.com/) -- not for beginners
 
-[Apple II](https://www.scullinsteel.com/apple2/)
+<vertical>
+## Resources: inspiration and teachers:
 
-[vera molnar](https://en.wikipedia.org/wiki/Vera_Moln%C3%A1r
-She is considered a pioneer of computer art.
+* [Daniel Schiffman's Coding Train](https://www.youtube.com/user/shiffman) - [@shiffman](https://twitter.com/shiffman)
+* [@invonvergent](https://twitter.com/inconvergent) [instructions](https://inconvergent.net/#writing)
+* [@mxsage](https://twitter.com/mxsage) [instructions](https://www.sagejenson.com/physarum)
+* [solving sol](http://solvingsol.com/solutions/) -- Sol Lewitt
 
-Vera Molnar – Artist & Designer
-Michael Noll – Engineer
-Frieder Nake – Mathemetician
-Georg Nees – Mathematics & Philosophy
+<vertical>
+## Resources: documentaiton & frameworks
 
+* [MDN Canvas API docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+* [D3](https://d3js.org/) - SVG & Javascruot visualization toolkit
+* [Processing](https://processing.org/) - granpappy of creative coding envs
+* [Open Frameworks](https://openframeworks.cc/) -- C++ creative coding
+* [ThreeJS](https://threejs.org/) - wrapper for canvas 3D API.
 
-
-Sol LeWitt, wall drawing, in May 2012 during the Wall Drawings from 1968 to 2007 Sol LeWitt retrospective exhibition at the Centre Pompidou-Metz, Metz, France.
-In 1968, LeWitt began to conceive sets of guidelines or simple diagrams for his two-dimensional works drawn directly on the wall. According to the principle of his work, LeWitt's wall drawings are usually executed by people other than the artist himself. Even after his death, people are still making these drawings.[19] He would therefore eventually use teams of assistants to create such works. Writing about making wall drawings, LeWitt himself observed in 1971 that "each person draws a line differently and each person understands words differently"
-http://solvingsol.com/solutions/

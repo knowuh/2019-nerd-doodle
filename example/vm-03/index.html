@@ -23,35 +23,30 @@
     <canvas width="500" height="500"></canvas>
   </body>
   <script>
-
-    // Variables:
-    var squareSize = 130;
-    var padding = 10;
     // Find a place we can draw:
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
 
+    // Variables:
+    var squareSize = 140;
+    var padding = 10;
 
-    // Draw a square at xy:
-    var drawSquare = function(gridX, gridY) {
+    // Draw a square at grid-y grid-y:
+    function drawSquare(gridX, gridY) {
       var startX = gridX * (squareSize + padding) + padding;
       var startY = gridY * (squareSize + padding) + padding;
-
       context.beginPath();
-
       context.moveTo(startX,               startY);
       context.lineTo(startX + squareSize,  startY);
       context.lineTo(startX + squareSize,  startY + squareSize) ;
       context.lineTo(startX,               startY + squareSize) ;
-
       context.closePath();
       context.stroke();
     }
 
-    // draw 4 sqaures
     drawSquare(0, 0);
     drawSquare(1, 0);
-    drawSquare(2, 0);
-    drawSquare(0, 1);
+    drawSquare(2, 1);
+    drawSquare(0, 2);
   </script>
 </html>
