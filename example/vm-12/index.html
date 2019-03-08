@@ -113,7 +113,7 @@
     function drawCircular (gridX, gridY) {
       var maxRadius = gridSize / 2;
       var symetry = 1
-      var wiggleAmt = 0.1;
+      var wiggleAmt = 0.05;
       var roundness = 0.8;
       var roundness = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 0.1, 0.9);
       // var roundness = columnScale(gridX, 0.99, 0.01);
@@ -175,7 +175,7 @@
       });
     }
     function clear() {
-      context.fillStyle = getColor(0,0,0, 0.01);
+      context.fillStyle = getColor(0, 0, 100, .2);
       context.fillRect(0,0, canvas.width, canvas.height);
     }
 
