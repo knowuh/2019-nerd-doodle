@@ -8,43 +8,39 @@
 
 
 <slide>
-
-# What is this talk?
-
-<slide>
 <img src="images/spiro-graph-box.jpg"/>
-
+m
 <slide>
 <img src="images/spiro-graph-art.jpg"/>
 
 <slide>
 # What is this talk?
-  * An introduction to creative coding
-  * Highlights from *Sketching with Code* course
+  * Introduction to creative coding
+  * Highlights from a class
   * For newbies
   * For cranky old-timers
 
 <slide>
-## What happens next?
-* An intro to [canvas 2d api](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-* Using minimal Javascript
+## deets
+* [Canvas 2d api](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+* Raw Javascript
 * Live mistakes
 * Visual tricks
 * Art history
 * Resources
 
 <slide>
+<img src="images/doodle1.png"/>
+
+<slide>
 <img src="images/doodle2.png"/>
 
 <slide>
-<img src="images/doodle1.png"/>
-
-
-<slide>
 ## Why sketch with code?
-  * Educational
-  * Happy accidents
-  * Good for the brain*
+
+* Educational
+* Happy accidents
+* Brain benefits*
 
 </br>
 <p class="tiny">* I am not a doctor</p>
@@ -57,7 +53,7 @@
 <slide>
 
 ## Who am I?
-  * Developer
+  * Javascript programmer
   * Student and teacher of visual art
   * Longtime programmer
   * Cheerleader
@@ -72,7 +68,7 @@
 <img src="images/duchamp.png"/>
 
 <slide>
-# Early Computer artists.
+# Early Computer artists
 
 <vertical>
 <div class="artist">
@@ -153,9 +149,8 @@
 ```
 
 <slide>
-## Our Goal
-<img src="images/mulnar/vera-mulnar-1.png"/>
 <p class="tiny">Point of departure: ~1970</p>
+<img src="images/mulnar/vera-mulnar-1.png"/>
 
 <slide>
 ## canvas
@@ -288,12 +283,12 @@
 
 <slide>
 ## We can change it with:
-* `context.fillStyle=`
+* `context.save()`
 * `context.tranlate(…)`
 * `context.rotate(…)`
 * `context.scale(…)`
 * `context.transform(…)`
-* `context.restore` 
+* `context.restore()`
 
 <slide>
 <img src="images/transforms.jpg"/>
@@ -303,11 +298,16 @@
 <a href="/example/vm-05.html" target="sample">demo</a>
 
 ```javascript
-    // Variables:
+    // ★ The only grid-size variables :
     var marginScale = 0.9;
     var numColumns = 3;
 
-    function setgridSize() {
+    // ★ context.translate(…) to center the grid
+    function adjustMargins () {
+      var size = gridSize * numColumns;
+      var extraSpaceX = canvas.width - size;
+      var extraSpaceY = canvas.height - size;
+      context.translate(extraSpaceX/2, extraSpaceY/2);
       if (canvas.width > canvas.height) {
         gridSize = canvas.height / numColumns;
       }
@@ -316,14 +316,7 @@
       }
     }
 
-    function adjustMargins () {
-      var size = gridSize * numColumns;
-      var extraSpaceX = canvas.width - size;
-      var extraSpaceY = canvas.height - size;
-      context.translate(extraSpaceX/2, extraSpaceY/2);
-      setgridSize()
-    }
-
+    // ★ record the new window size
     function resize() {
       var {width: w, height: h}  = canvas.getBoundingClientRect();
       canvas.width = w;
@@ -332,7 +325,32 @@
       draw();
     }
 
+    // ★ When the window is resized, redraw …
     window.addEventListener("resize", resize);
+
+    // ★ Align a drawing function with the grid
+    function drawInGrid (gridX, gridY, drawingFunction) {
+      var halfGrid = gridSize / 2;
+      context.save();
+      context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
+      context.scale(marginScale, marginScale);
+      drawingFunction();
+      context.restore();
+    }
+
+    // ★ Before we draw, measure everything
+    function draw () {
+      setgridSize();
+      adjustMargins();
+      context.save();
+      var x, y;
+      for(x=0; x < numColumns; x++) {
+        for(y=0; y < numColumns; y++) {
+          drawInGrid(x, y, veraSquare);
+        }
+      }
+      context.restore();
+    }
 ```
 <vertical>
 ##### 05
@@ -354,31 +372,8 @@
         context.restore();
       }
     }
+```
 
-    // Align a drawing function into a grid
-    function drawInGrid (gridX, gridY, drawingFunction) {
-      var halfGrid = gridSize / 2;
-      context.save();
-      context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
-      context.scale(marginScale, marginScale);
-      drawingFunction();
-      context.restore();
-    }
-
-    // draw all the squares
-    function draw () {
-      setgridSize();
-      adjustMargins();
-      context.save();
-      var x, y;
-      for(x=0; x < numColumns; x++) {
-        for(y=0; y < numColumns; y++) {
-          drawInGrid(x, y, veraSquare);
-        }
-      }
-      context.restore();
-    }
-    ```
 <vertical>
 ##### 06
 <img src="images/6.png"/>
