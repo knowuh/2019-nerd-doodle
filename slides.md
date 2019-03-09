@@ -14,7 +14,7 @@
   <img src="images/slides-qr.svg"/>
 
   https://knowuh.github.io/2019-nerd-doodle/
-  
+
   [github](https://github.com/knowuh/2019-nerd-doodle)
 
 </div>
@@ -23,7 +23,7 @@
 [related code pen example](https://codepen.io/knowuh/pen/GeEEMb?editors=0010)
 <slide>
 <img src="images/spiro-graph-box.jpg"/>
-m
+
 <slide>
 <img src="images/spiro-graph-art.jpg"/>
 
