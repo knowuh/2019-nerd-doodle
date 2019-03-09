@@ -35,8 +35,8 @@
 
     // Variables:
     var gridSize = 1;
-    var marginScale = 0.9;
-    var numColumns = 11;
+    var marginScale = 1;
+    var numColumns = 4;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -112,9 +112,9 @@
     function drawCircular (gridX, gridY) {
       var maxRadius = gridSize / 2;
       var symetry = 1
-      var wiggleAmt = .1; // columnScale(gridY, 0.8, 0.01);
-      var roundness = 0.1;
-      var roundness = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 0.1, 0.9);
+      var wiggleAmt = 0.5; // columnScale(gridY, 0.8, 0.01);
+      var roundness = 1;
+      // var roundness = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 0.1, 0.9);
       // var roundness = columnScale(gridX, 0.99, 0.01);
       var numPoints = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 3, 20);
       // var numPoints = columnScale(gridY, 13, 3);
@@ -133,7 +133,7 @@
         }
       }
       context.closePath();
-      context.stroke();
+      // context.stroke();
       context.fill();
       context.restore();
     }
