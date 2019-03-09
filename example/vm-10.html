@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>11: Uniform radii</title>
+    <title>10: Intermission Radial</title>
     <style>
       body {
         width: 100vw;
@@ -36,7 +36,7 @@
     // Variables:
     var gridSize = 1;
     var marginScale = 0.9;
-    var numColumns = 11;
+    var numColumns = 1;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -71,83 +71,46 @@
       return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
     }
 
-    var radiiCache = {};
-
-    function randRadii (numPoints, roundness, symetry) {
-      var randR = () => Math.random() * (1.0 - roundness);
-      var radii=[];
-
-      for (i = 0; i < numPoints; i++) {
-        radii[i] = randR() + roundness;
-      }
-      return radii;
-    }
-
-    function wiggle(radii, amount) {
-      var max = Math.max(...radii);
-      var maxAdjust = amount * max;
-      return radii.map( (r) => r + Math.random() * maxAdjust - (maxAdjust / 2));
-    }
-
-    function getRadii (cacheKey, numPoints, roundness, symetry){
-      if (radiiCache[cacheKey]) { return radiiCache[cacheKey]; }
-      var radii = randRadii (numPoints, roundness, symetry);
-
-      radiiCache[cacheKey] = radii;
-      return radii;
-    }
-
-    // Converts input so to linear scaled result is within outMin–outMax range.
-    function linearScale(input, inputMin, inputMax, outMin, outMax) {
-      return outMin +
-            (input    - inputMin) *
-            (outMax   - outMin) /
-            (inputMax - inputMin)
-    }
-
-    function columnScale(columnNo, min, max) {
-      return linearScale(columnNo, 0, numColumns, min, max);
-    }
-
     function drawCircular (gridX, gridY) {
+      var numPoints = 6;
+      var roundness = 0.7;
+      var symetry = 3;
+      var minR = roundness;
+      var randR = () => Math.random() * (1.0 - minR);
+      var radia=[];
       var maxRadius = gridSize / 2;
-      var symetry = 1
-      var wiggleAmt = .1; // columnScale(gridY, 0.8, 0.01);
-      var roundness = 0.1;
-      var roundness = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 0.1, 0.9);
-      // var roundness = columnScale(gridX, 0.99, 0.01);
-      var numPoints = linearScale(gridX + gridY * numColumns, 0, numColumns * numColumns, 3, 20);
-      // var numPoints = columnScale(gridY, 13, 3);
-      var key = `${gridX}${gridY}`
-      var radii = getRadii(key, numPoints, roundness, symetry);
-      var radii = wiggle(radii, wiggleAmt);
-      var increment = (2 * Math.PI) / radii.length / symetry;
       var i;
+      var r;
+      var increment = (2 * Math.PI) / numPoints / symetry;
+      for (i = 0; i < numPoints; i++) {
+        radia[i] = randR() + minR;
+      }
       context.save();
+      context.fillStyle="black";
       context.beginPath();
-      context.moveTo(0, maxRadius * radii[0])
+      context.moveTo(0, maxRadius * radia[0])
       for(j = 0; j < symetry; j++) {
-        for (i= 0; i < radii.length; i++) {
-          context.lineTo(0, maxRadius * radii[i])
+        for (i= 0; i < radia.length; i++) {
+          context.lineTo(0, maxRadius * radia[i])
           context.rotate(increment);
         }
       }
       context.closePath();
       context.stroke();
-      context.fill();
       context.restore();
     }
 
     function veraSquare(gridX, gridY) {
       var i = 1;
-      var numSteps = columnScale(gridY, 1, 10);
-      var stepSize = 1 / numSteps;
-      var h = columnScale(gridX, 0.01, 0.21);
+      var numSquares = 3;
+      var stepSize = 1 / (numSquares * (gridY + 1))
+      var colorSimilarity = 4;
+      var h = (gridX / numColumns) / colorSimilarity;
       var s = 0.5;
-      var l = columnScale(gridY, 0.9, 0.5);
-      var a = 0.8;
+      var l = gridY / numColumns;
+      var a = 0.15;
       context.fillStyle = getColor(h, s, l, a);
-
+      // sale from  0 to 1 in numSquares steps
       for (i = 1; i >= 0; i -= stepSize) {
         context.save();
         context.scale(i, i);

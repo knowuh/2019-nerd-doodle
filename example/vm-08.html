@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>07: Vera Molnar</title>
+    <title>08: Vera Molnar</title>
     <style>
       body {
         width: 100vw;
@@ -35,8 +35,8 @@
 
     // Variables:
     var gridSize = 1;
-    var marginScale = 0.8;
-    var numColumns = 10;
+    var marginScale = 0.6;
+    var numColumns = 6;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -64,14 +64,37 @@
     }
     window.addEventListener("resize", resize);
 
-    function randomNudge(gridFraction) {
-      var randAmount = gridSize * gridFraction;
-      return randAmount - Math.random() * (randAmount/2)
+    function drawSquare (gridX, gridY) {
+      var halfGrid = gridSize / 2;
+      // Expect the origin, 0,0 to be in the center.
+      var startX = - halfGrid;
+      var startY = - halfGrid;
+      var randAmout = halfGrid * gridX / 10;
+      var r = () => (randAmout/2) - Math.random() * randAmout
+      var endX = halfGrid;
+      var endY = halfGrid;
+      var light = numColumns / (gridY + 1);
+
+      context.beginPath();
+
+      context.moveTo(startX + r(), startY +r());
+      context.lineTo(endX + r(),   startY +r());
+      context.lineTo(endX + r(),   endY + r()) ;
+      context.lineTo(startX +r(), endY +r()) ;
+
+      context.closePath();
+
+      context.stroke();
     }
 
-    function drawSquare () {
+    function randomNudge(gridFraction) {
+      var randAmount = gridSize * gridFraction;
+      return (randAmount/2) - Math.random() * randAmount
+    }
+
+    function drawSquare (gridX, gridY) {
       var halfGrid = gridSize / 2;
-      var wiggleFraction = 0.3;
+      var wiggleFraction = gridY / numColumns / 2
 
       var startX = - halfGrid + randomNudge(wiggleFraction) ;
       var startY = - halfGrid + randomNudge(wiggleFraction) ;
@@ -88,16 +111,15 @@
       context.closePath();
       context.stroke();
     }
-
-    function veraSquare() {
-      var i = 0;
-      var numSquares = 10;
-      var stepSize = 1 / numSquares;
+    function veraSquare(gridX, gridY) {
+      var i = 1;
+      var numSquares = 3;
+      var stepSize = 1 / (numSquares * (gridY + 1))
       // sale from  0 to 1 in numSquares steps
-      for (i = 0; i <= 1; i += stepSize) {
+      for (i = 1; i >= 0; i -= stepSize) {
         context.save();
         context.scale(i, i);
-        drawSquare();
+        drawSquare(gridX, gridY);
         context.restore();
       }
 
@@ -109,7 +131,7 @@
       context.save();
       context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
       context.scale(marginScale, marginScale);
-      drawingFunction();
+      drawingFunction(gridX, gridY);
       context.restore();
     }
 

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>10: Intermission Radial</title>
+    <title>07: Vera Molnar</title>
     <style>
       body {
         width: 100vw;
@@ -35,8 +35,8 @@
 
     // Variables:
     var gridSize = 1;
-    var marginScale = 0.9;
-    var numColumns = 1;
+    var marginScale = 0.8;
+    var numColumns = 10;
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -64,57 +64,40 @@
     }
     window.addEventListener("resize", resize);
 
-    function getColor(hue,  sat, light, alpha) {
-      var h = hue * 365;
-      var s = sat * 100;
-      var l = light * 100;
-      return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
+    function randomNudge(gridFraction) {
+      var randAmount = gridSize * gridFraction;
+      return (randAmount/2) - Math.random() * randAmount
     }
 
-    function drawCircular (gridX, gridY) {
-      var numPoints = 30;
-      var roundness = 0.9;
-      var symetry = 1;
-      var minR = roundness;
-      var randR = () => Math.random() * (1.0 - minR);
-      var radia=[];
-      var maxRadius = gridSize / 2;
-      var i;
-      var r;
-      var increment = (2 * Math.PI) / numPoints / symetry;
-      for (i = 0; i < numPoints; i++) {
-        radia[i] = randR() + minR;
-      }
-      context.save();
-      context.fillStyle="black";
+    function drawSquare () {
+      var halfGrid = gridSize / 2;
+      var wiggleFraction = 0.3;
+
+      var startX = - halfGrid + randomNudge(wiggleFraction) ;
+      var startY = - halfGrid + randomNudge(wiggleFraction) ;
+      var endX = halfGrid + randomNudge(wiggleFraction) ;
+      var endY = halfGrid + randomNudge(wiggleFraction) ;
+
       context.beginPath();
-      context.moveTo(0, maxRadius * radia[0])
-      for(j = 0; j < symetry; j++) {
-        for (i= 0; i < radia.length; i++) {
-          context.lineTo(0, maxRadius * radia[i])
-          context.rotate(increment);
-        }
-      }
+
+      context.moveTo(startX, startY);
+      context.lineTo(endX,   startY);
+      context.lineTo(endX,   endY);
+      context.lineTo(startX, endY) ;
+
       context.closePath();
       context.stroke();
-      context.restore();
     }
 
-    function veraSquare(gridX, gridY) {
-      var i = 1;
-      var numSquares = 3;
-      var stepSize = 1 / (numSquares * (gridY + 1))
-      var colorSimilarity = 4;
-      var h = (gridX / numColumns) / colorSimilarity;
-      var s = 0.5;
-      var l = gridY / numColumns;
-      var a = 0.15;
-      context.fillStyle = getColor(h, s, l, a);
+    function veraSquare() {
+      var i = 0;
+      var numSquares = 10;
+      var stepSize = 1 / numSquares;
       // sale from  0 to 1 in numSquares steps
-      for (i = 1; i >= 0; i -= stepSize) {
+      for (i = 0; i <= 1; i += stepSize) {
         context.save();
         context.scale(i, i);
-        drawCircular(gridX, gridY);
+        drawSquare();
         context.restore();
       }
 
@@ -126,7 +109,7 @@
       context.save();
       context.translate(gridX * gridSize + halfGrid, gridY * gridSize + halfGrid);
       context.scale(marginScale, marginScale);
-      drawingFunction(gridX, gridY);
+      drawingFunction();
       context.restore();
     }
 
