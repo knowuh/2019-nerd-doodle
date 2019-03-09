@@ -33,10 +33,13 @@
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
 
-    // Variables:
+    // ★ Variables:
     var gridSize = 1;
     var marginScale = 1;
     var numColumns = 4;
+
+    // ★ we resuse radii for concentric rings
+    var radiiCache = {};
 
     function setgridSize () {
       if (canvas.width > canvas.height) {
@@ -71,8 +74,9 @@
       return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
     }
 
-    var radiiCache = {};
 
+
+    // ★ generate random polygon radial points
     function randRadii (numPoints, roundness, symetry) {
       var randR = () => Math.random() * (1.0 - roundness);
       var radii=[];
@@ -83,12 +87,14 @@
       return radii;
     }
 
+    // ★ wiggle a point of the polygon by randomly adjusting r
     function wiggle(radii, amount) {
       var max = Math.max(...radii);
       var maxAdjust = amount * max;
       return radii.map( (r) => r + Math.random() * maxAdjust - (maxAdjust / 2));
     }
 
+    // ★ make or lookup set of radii for drawing roundy polygons
     function getRadii (cacheKey, numPoints, roundness, symetry){
       if (radiiCache[cacheKey]) { return radiiCache[cacheKey]; }
       var radii = randRadii (numPoints, roundness, symetry);
@@ -97,7 +103,7 @@
       return radii;
     }
 
-    // Converts input so to linear scaled result is within outMin–outMax range.
+    // ★ Converts input so to linear scaled result is within outMin–outMax range.
     function linearScale(input, inputMin, inputMax, outMin, outMax) {
       return outMin +
             (input    - inputMin) *
@@ -105,10 +111,12 @@
             (inputMax - inputMin)
     }
 
+    // ★ scale a value according to its column index
     function columnScale(columnNo, min, max) {
       return linearScale(columnNo, 0, numColumns, min, max);
     }
 
+    // ★ draw a roughly circular or star shaped polygon
     function drawCircular (gridX, gridY) {
       var maxRadius = gridSize / 2;
       var symetry = 1
@@ -138,6 +146,7 @@
       context.restore();
     }
 
+    // ★ Draw consectutive inset shapes.
     function veraSquare(gridX, gridY) {
       var i = 1;
       var numSteps = columnScale(gridY, 1, 10);
@@ -154,10 +163,9 @@
         drawCircular(gridX, gridY);
         context.restore();
       }
-
     }
 
-    // Align drawing to our grid
+    // ★ Align draw a `drawingFunction` in the grid
     function drawInGrid (gridX, gridY, drawingFunction) {
       var halfGrid = gridSize / 2;
       context.save();
@@ -167,7 +175,7 @@
       context.restore();
     }
 
-    // draw hella squares:
+    // ★ Draw our canvas full of grid items
     function draw () {
       setgridSize();
       adjustMargins();
