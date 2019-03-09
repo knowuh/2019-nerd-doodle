@@ -1,12 +1,16 @@
 
-# Doodling with the Canvas API
+# Doodling
+### with the Canvas API
+<br/><br/>
 <div class="left">
-  [@knowuh](https://twitter.com/knowuh/)<br/>
+   [@knowuh](https://twitter.com/knowuh/) Noah Paessel <br/>
   knowuh@gmail.com <br/>
-  http://paessel.com/
+  http://paessel.com/<br/>
+  [slides](https://knowuh.github.io/2019-nerd-doodle/) → [github](https://github.com/knowuh/2019-nerd-doodle)
 </div>
 
-
+<vertical>
+[related code pen example](https://codepen.io/knowuh/pen/GeEEMb?editors=0010)
 <slide>
 <img src="images/spiro-graph-box.jpg"/>
 m
@@ -518,11 +522,14 @@ By holding some things constant, we focus on the possibilities of the remaining 
 * Similarity: We look for differences and commonality of shape.
 
 <vertical>
+proximity
 <img src="images/proximity.jpg"/>
+
 <vertical>
+closure
 <img src="images/closure.jpg"/>
+
 <vertical>
-## Book about Gestalt theory:
 * ["Primer of Visual Literacy"](https://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290) by Donis A. Dondis.
 
 <vertical>
@@ -536,6 +543,7 @@ By holding some things constant, we focus on the possibilities of the remaining 
   <span class="fragment">Make it **Big**.</span>
   <span class="fragment">Make it **red**.</span>
   <span class="fragment">Or make **many** of them.</span>
+  <span class="fragment"> 😅</span>
 </div>
 
 Note:
@@ -545,8 +553,17 @@ Note:
 * Accidents: Investigate, celebrate, incorporate your accidents.
 * Fake it: It's art. It's all fake. Their is no purity, it's all for show.
 
+<slide>
+# Questions?
 
 <slide>
+## Resources: This talk:
+
+* [slides on gh pages](https://knowuh.github.io/2019-nerd-doodle/)
+* [slides repo ](https://github.com/knowuh/2019-nerd-doodle)
+* [code pen example](https://codepen.io/knowuh/pen/GeEEMb?editors=0010)
+
+<vertical>
 ## Resources: low-friction tools
 
 * [surge](https://surge.sh/) - instantly publish a website
@@ -556,7 +573,7 @@ Note:
 * [shader toy](https://www.shadertoy.com/) -- not for beginners
 
 <vertical>
-## Resources: inspiration and teachers:
+## Resources: inspirational teachers:
 
 * [Daniel Schiffman's Coding Train](https://www.youtube.com/user/shiffman) - [@shiffman](https://twitter.com/shiffman)
 * [@inconvergent](https://twitter.com/inconvergent) [instructions](https://inconvergent.net/#writing)
@@ -572,8 +589,6 @@ Note:
 * [Open Frameworks](https://openframeworks.cc/) -- C++ creative coding
 * [ThreeJS](https://threejs.org/) - wrapper for canvas 3D API.
 
-<slide>
-# Questions?
 
 <slide>
 # ★ Thank you! ★
