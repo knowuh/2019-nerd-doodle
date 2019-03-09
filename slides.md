@@ -117,14 +117,25 @@
 
 <slide>
 <img src="images/maeda-sketch.png"/>
+
 <slide>
-# Teaching Programming
-* Reduce friction.
-* Wishful programming.
-* Get *something* on the screen ASAP.
-* Generalize.
-* HSLA color.
-* Google MDN.
+<img src="images/sol-lewitt-wall-1977.jpg"/>
+
+<slide>
+# Programming Tips
+* Reduce friction
+* Wishful programming
+* Get *something* on screen
+* Fewer numbers
+* Hide complexity
+* HSLA color
+* Google MDN
+
+<vertical>
+## Reduce friction
+* `live-server` or similar
+* [code pen](https://codepen.io/)
+* A helpful editor eg: [vs-code]((https://code.visualstudio.com/)
 
 <vertical>
 ## Wishful programming
@@ -138,7 +149,6 @@
     // Not sure what to do yet!
     console.log('drawing a square:', x, y, size)
   }
-
 
 ```
 
@@ -172,7 +182,7 @@
 
 <slide>
 ## Square on a canvas
-<a href="/example/vm-01" target="sample">demo</a>
+<a href="/example/vm-01/" target="sample">demo</a>
 
 ```javascript
     // Easy way to draw a rectantangle:  
@@ -194,7 +204,7 @@
 
 <slide>
 ## Multiple Squares
-<a href="/example/vm-02" target="sample">demo</a>
+<a href="/example/vm-02.html" target="sample">demo</a>
 
 ```javascript
     // Draw a square at x,y of size:
@@ -220,7 +230,7 @@
 <slide>
 ## Squares on a Grid
 
-<a href="/example/vm-03" target="sample">demo</a>
+<a href="/example/vm-03.html" target="sample">demo</a>
 
 ```javascript
     var squareSize = 140;
@@ -251,7 +261,7 @@
 
 <slide>
 ## Loop it
-<a href="/example/vm-04" target="sample">demo</a>
+<a href="/example/vm-04.html" target="sample">demo</a>
 
 ```javascript
    // hella squares:
@@ -285,12 +295,12 @@
 * `context.transform(…)`
 * `context.restore` 
 
-<vertical>
+<slide>
 <img src="images/transforms.jpg"/>
 
 <slide>
 ## Make it big
-<a href="/example/vm-05" target="sample">demo</a>
+<a href="/example/vm-05.html" target="sample">demo</a>
 
 ```javascript
     // Variables:
@@ -330,7 +340,7 @@
 
 <slide>
 ## Moar loops
-<a href="/example/vm-06" target="sample">demo</a>
+<a href="/example/vm-06.html" target="sample">demo</a>
 ```javascript
     function veraSquare() {
       var i = 0;
@@ -375,7 +385,7 @@
 
 <slide>
 ### Imperfectionz & randomnez
-<a href="/example/vm-07" target="sample">demo</a>
+<a href="/example/vm-07.html" target="sample">demo</a>
 
 ```javascript
   function randomNudge(gridFraction) {
@@ -403,19 +413,109 @@
     context.stroke();
   }
 ```
+<vertical>
+##### 07
+<img src="images/7.png"/>
 
 <slide>
-## VM-08: Parameters and Variations
+## Parameters and Variations
+<a href="/example/vm-08.html" target="sample">demo</a>
+
+```javascript
+  function drawSquare (gridX, gridY) {
+
+    var wiggleFraction = gridY / numColumns / 2
+
+    var halfGrid = gridSize / 2;
+    var startX = - halfGrid + randomNudge(wiggleFraction) ;
+    var startY = - halfGrid + randomNudge(wiggleFraction) ;
+    var endX = halfGrid + randomNudge(wiggleFraction) ;
+    var endY = halfGrid + randomNudge(wiggleFraction) ;
+    …
+  }
+```
+<vertical>
+##### 08
+<img src="images/8.png"/>
+
 
 <slide>
-## VM-09: HSLA Colors
+## HSLA Colors
+<a href="/example/vm-09.html" target="sample">demo</a>
+
+```javascript
+  function getColor(hue,  sat, light, alpha) {
+    var h = hue * 360; // Hue space is color wheel 360 deg
+    var s = sat * 100;
+    var l = light * 100;
+    return `hsla(${h}, ${s}%, ${l}%, ${alpha})`
+  }
+
+  // … later
+  var h = gridX / numColumns;
+  var s = 0.5;
+  var l = gridY / numColumns;
+  var a = 0.15;
+
+  context.fillStyle = getColor(h, s, l, a); // ★
+
+```
+<vertical>
+##### 09
+<img src="images/9.png"/>
 
 <slide>
-## VM-11: Radial
+<p> wait what? </p>
+# No Spirograph??!
+
+<vertical>
+<img src="images/spirograph-transform.jpg"/>
+
+<vertical>
+<img src="images/10a.png"/>
+
+<vertical>
+<img src="images/10b.png"/>
+
+<vertical>
+## Polar to Cartesian
+* x = r × cos(θ)
+* y = r × sin(θ)
+
+<br/>
+<p> Or just use `context.rotate()` </P>
+<vertical>
+
+<p>radial drawing</p>
+<a href="/example/vm-10.html" target="sample">demo</a>
+
+```javascript
+  var increment = (2 * Math.PI) / numPoints;
+
+  context.save();
+  context.beginPath();
+  context.moveTo(0, maxRadius * radii[0]);
+
+  for (i= 0; i < radii.length; i++) {
+    context.lineTo(0, maxRadius * radii[i]);
+    context.rotate(increment);
+  }
+
+  context.closePath();
+  context.stroke();
+  context.restore();
+```
 
 <slide>
-## VM-12: Animation
+## Put it together
+<a href="/example/vm-10.html" target="sample">demo</a>
 
+<vertical>
+<img src="images/11.png"/>
+
+<slide>
+## Postscript: Animation
+<a href="/example/vm-12.html" target="sample">demo</a>
 
 
 <slide>
@@ -524,3 +624,12 @@ Note:
 * [Open Frameworks](https://openframeworks.cc/) -- C++ creative coding
 * [ThreeJS](https://threejs.org/) - wrapper for canvas 3D API.
 
+<slide>
+# Questions?
+
+<slide>
+# ★ Thank you! ★
+
+knowuh@gmail.com
+
+@knowuh
