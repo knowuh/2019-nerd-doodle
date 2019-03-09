@@ -2,11 +2,21 @@
 # Doodling
 ### with the Canvas API
 <br/><br/>
+
+
 <div class="left">
-   [@knowuh](https://twitter.com/knowuh/) Noah Paessel <br/>
+  [@knowuh](https://twitter.com/knowuh/) Noah Paessel <br/>
   knowuh@gmail.com <br/>
   http://paessel.com/<br/>
-  [slides](https://knowuh.github.io/2019-nerd-doodle/) → [github](https://github.com/knowuh/2019-nerd-doodle)
+</div>
+
+<vertical>
+  <img src="images/slides-qr.svg"/>
+
+  https://knowuh.github.io/2019-nerd-doodle/
+  
+  [github](https://github.com/knowuh/2019-nerd-doodle)
+
 </div>
 
 <vertical>
