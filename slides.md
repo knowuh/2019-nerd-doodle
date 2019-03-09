@@ -144,7 +144,7 @@
 
 <slide>
 ## Square on a canvas
-<a href="/example/vm-01/" target="sample">demo</a>
+<a href="example/vm-01.html" target="sample">demo</a>
 
 ```javascript
     // Easy way to draw a square:  
@@ -166,7 +166,7 @@
 
 <slide>
 ## Multiple Squares
-<a href="/example/vm-02.html" target="sample">demo</a>
+<a href="example/vm-02.html" target="sample">demo</a>
 
 ```javascript
     // Draw a square at x,y of size:
@@ -192,7 +192,7 @@
 <slide>
 ## Squares on a Grid
 
-<a href="/example/vm-03.html" target="sample">demo</a>
+<a href="example/vm-03.html" target="sample">demo</a>
 
 ```javascript
     var squareSize = 140;
@@ -223,7 +223,7 @@
 
 <slide>
 ## Loop it
-<a href="/example/vm-04.html" target="sample">demo</a>
+<a href="example/vm-04.html" target="sample">demo</a>
 
 ```javascript
    // hella squares:
@@ -262,7 +262,7 @@
 
 <slide>
 ## Make it big
-<a href="/example/vm-05.html" target="sample">demo</a>
+<a href="example/vm-05.html" target="sample">demo</a>
 
 ```javascript
     // ★ The only grid-size variables :
@@ -325,7 +325,7 @@
 
 <slide>
 ## Moar loops
-<a href="/example/vm-06.html" target="sample">demo</a>
+<a href="example/vm-06.html" target="sample">demo</a>
 ```javascript
     function veraSquare() {
       var i = 0;
@@ -347,7 +347,7 @@
 
 <slide>
 ### Imperfectionz & randomnez
-<a href="/example/vm-07.html" target="sample">demo</a>
+<a href="example/vm-07.html" target="sample">demo</a>
 
 ```javascript
   function randomNudge(gridFraction) {
@@ -381,7 +381,7 @@
 
 <slide>
 ## Parameters and Variations
-<a href="/example/vm-08.html" target="sample">demo</a>
+<a href="example/vm-08.html" target="sample">demo</a>
 
 ```javascript
   function drawSquare (gridX, gridY) {
@@ -403,7 +403,7 @@
 
 <slide>
 ## HSLA Colors
-<a href="/example/vm-09.html" target="sample">demo</a>
+<a href="example/vm-09.html" target="sample">demo</a>
 
 ```javascript
   function getColor(hue,  sat, light, alpha) {
@@ -449,7 +449,7 @@
 <vertical>
 
 <p>radial drawing</p>
-<a href="/example/vm-10.html" target="sample">demo</a>
+<a href="example/vm-10.html" target="sample">demo</a>
 
 ```javascript
   var increment = (2 * Math.PI) / numPoints;
@@ -470,14 +470,14 @@
 
 <slide>
 ## Put it together
-<a href="/example/vm-11.html" target="sample">demo</a>
+<a href="example/vm-11.html" target="sample">demo</a>
 
 <vertical>
 <img src="images/11.png"/>
 
 <slide>
 ## Postscript: Animation
-<a href="/example/vm-12.html" target="sample">demo</a>
+<a href="example/vm-12.html" target="sample">demo</a>
 
 
 <slide>
